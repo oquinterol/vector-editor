@@ -1,0 +1,66 @@
+{
+	"name": "@oquinterol/vector-editor",
+	"version": "0.1.0",
+	"description": "In-browser cloning simulator: choose commercial or custom restriction enzymes, digest and ligate, and get a live FASTA and plasmid map.",
+	"license": "MIT",
+	"author": "Oscar Alexis Quintero López (https://oquinterol.com)",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/oquinterol/vector-editor.git"
+	},
+	"homepage": "https://oquinterol.com/en/tools/vector-editor/",
+	"keywords": [
+		"plasmid",
+		"cloning",
+		"restriction-enzymes",
+		"rebase",
+		"fasta",
+		"bioinformatics",
+		"open-science"
+	],
+	"type": "module",
+	"sideEffects": [
+		"*.css"
+	],
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./core": {
+			"types": "./dist/core.d.ts",
+			"import": "./dist/core.js"
+		},
+		"./styles.css": "./dist/styles.css"
+	},
+	"files": [
+		"dist",
+		"DATA_NOTICE.md"
+	],
+	"scripts": {
+		"build": "tsup && cp src/ui/styles.css dist/styles.css",
+		"test": "vitest run",
+		"typecheck": "tsc --noEmit",
+		"enzymes": "node scripts/build-enzymes.mjs"
+	},
+	"peerDependencies": {
+		"react": "^18.0.0 || ^19.0.0",
+		"react-dom": "^18.0.0 || ^19.0.0"
+	},
+	"dependencies": {
+		"seqparse": "^0.2.2",
+		"seqviz": "^3.10.25"
+	},
+	"devDependencies": {
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
+		"react": "^19.3.0",
+		"react-dom": "^19.3.0",
+		"tsup": "^8.5.1",
+		"typescript": "~5.9.3",
+		"vitest": "^5.0.3"
+	},
+	"packageManager": "pnpm@11.2.2"
+}

@@ -1,0 +1,334 @@
+/* Vector editor. Theme through these custom properties; defaults are neutral light. */
+.ve {
+	--ve-bg: var(--ve-theme-bg, #ffffff);
+	--ve-surface: var(--ve-theme-surface, #f6f7f6);
+	--ve-ink: var(--ve-theme-ink, #1d2421);
+	--ve-muted: var(--ve-theme-muted, #5f6b65);
+	--ve-line: var(--ve-theme-line, #d6ddd8);
+	--ve-accent: var(--ve-theme-accent, #215f59);
+	--ve-warn: var(--ve-theme-warn, #8a6d00);
+	--ve-error: var(--ve-theme-error, #b3261e);
+	--ve-mono: var(--ve-theme-mono, ui-monospace, 'SFMono-Regular', monospace);
+	/* Circular map palette; set these for a dark map. */
+	--ve-map-bg: var(--ve-theme-map-bg, #ffffff);
+	--ve-map-ink: var(--ve-theme-map-ink, #2a2a2a);
+	--ve-map-muted: var(--ve-theme-map-muted, #73777d);
+	--ve-map-cut: var(--ve-theme-map-cut, #73777d);
+	display: grid;
+	gap: 1rem;
+	color: var(--ve-ink);
+}
+.ve *,
+.ve *::before,
+.ve *::after {
+	box-sizing: border-box;
+}
+.ve h3 {
+	margin: 0 0 0.75rem;
+	font-size: 1.1rem;
+}
+.ve-muted {
+	color: var(--ve-muted);
+	font-size: 0.85em;
+}
+.ve-sr {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+}
+.ve-panel {
+	padding: 1rem 1.1rem;
+	border: 1px solid var(--ve-line);
+	border-radius: 10px;
+	background: var(--ve-surface);
+}
+.ve-inputs {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+	gap: 1rem;
+}
+.ve-input-head {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: 0.4rem;
+	font-weight: 650;
+}
+.ve textarea,
+.ve input[type='search'],
+.ve input:not([type]),
+.ve select {
+	width: 100%;
+	padding: 0.55rem 0.7rem;
+	border: 1px solid var(--ve-line);
+	border-radius: 6px;
+	background: var(--ve-bg);
+	color: var(--ve-ink);
+	font: inherit;
+}
+.ve textarea {
+	min-height: 9rem;
+	resize: vertical;
+	font-family: var(--ve-mono);
+	font-size: 0.78rem;
+	line-height: 1.45;
+	word-break: break-all;
+}
+.ve-input-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+}
+.ve-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	min-height: 2.75rem;
+	padding: 0 0.9rem;
+	border: 1px solid var(--ve-line);
+	border-radius: 6px;
+	background: var(--ve-bg);
+	color: var(--ve-ink);
+	font: inherit;
+	font-size: 0.85rem;
+	cursor: pointer;
+}
+.ve-button:hover {
+	border-color: var(--ve-accent);
+}
+.ve-button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+.ve-button input[type='file'] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}
+.ve-button:focus-within {
+	outline: 2px solid var(--ve-accent);
+	outline-offset: 2px;
+}
+.ve-example {
+	justify-self: start;
+}
+.ve-selected {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.4rem;
+	margin: 0 0 0.75rem;
+}
+.ve-chip {
+	min-height: 2.25rem;
+	padding: 0 0.7rem;
+	border: 1px solid var(--ve-accent);
+	border-radius: 999px;
+	background: transparent;
+	color: var(--ve-accent);
+	font: inherit;
+	font-family: var(--ve-mono);
+	font-size: 0.8rem;
+	cursor: pointer;
+}
+.ve-filters {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr;
+	gap: 0.6rem;
+	align-items: end;
+}
+.ve-filters label {
+	display: grid;
+	gap: 0.25rem;
+	font-size: 0.78rem;
+	color: var(--ve-muted);
+}
+.ve-enzyme-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+	gap: 0.3rem;
+	max-height: 18rem;
+	margin: 0.75rem 0 0;
+	padding: 0;
+	overflow: auto;
+	list-style: none;
+}
+.ve-enzyme-list label,
+.ve-fragment-list label {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem;
+	min-height: 2.75rem;
+	padding: 0.3rem 0.6rem;
+	border: 1px solid transparent;
+	border-radius: 6px;
+	cursor: pointer;
+}
+.ve-enzyme-list label:hover,
+.ve-fragment-list label:hover {
+	border-color: var(--ve-line);
+}
+.ve-enzyme-list label.is-on,
+.ve-fragment-list label.is-on {
+	border-color: var(--ve-accent);
+}
+.ve-enzyme-list code {
+	font-family: var(--ve-mono);
+	font-size: 0.78rem;
+	color: var(--ve-muted);
+}
+.ve-enzyme-list input,
+.ve-fragment-list input,
+.ve-orientation input {
+	accent-color: var(--ve-accent);
+}
+.ve-tag {
+	padding: 0 0.35rem;
+	border: 1px dashed var(--ve-muted);
+	border-radius: 4px;
+	font-size: 0.7rem;
+	color: var(--ve-muted);
+}
+.ve-custom {
+	margin-top: 0.75rem;
+}
+.ve-custom summary {
+	min-height: 2.75rem;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	font-weight: 650;
+}
+.ve-custom-form {
+	display: grid;
+	grid-template-columns: 1fr 1.4fr auto;
+	gap: 0.5rem;
+}
+.ve-custom-form input:nth-child(2) {
+	font-family: var(--ve-mono);
+}
+.ve-custom-list {
+	display: grid;
+	gap: 0.3rem;
+	margin: 0.5rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+.ve-custom-list li {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+}
+.ve-error {
+	color: var(--ve-error);
+}
+.ve-fragments {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+	gap: 1rem;
+}
+.ve fieldset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	min-width: 0;
+}
+.ve legend {
+	margin-bottom: 0.4rem;
+	font-weight: 650;
+}
+.ve-orientation {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-top: 0.75rem !important;
+}
+.ve-orientation label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	min-height: 2.75rem;
+}
+.ve-warnings {
+	display: grid;
+	gap: 0.3rem;
+	margin: 0.75rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+.ve-warnings li {
+	padding: 0.4rem 0.7rem;
+	border-left: 3px solid var(--ve-warn);
+	color: var(--ve-ink);
+	font-size: 0.88rem;
+}
+.ve-result-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+	gap: 1rem;
+}
+.ve-map {
+	min-height: 26rem;
+	height: 26rem;
+	border: 1px solid var(--ve-line);
+	border-radius: 8px;
+	background: var(--ve-map-bg);
+	overflow: hidden;
+}
+/* SeqViz paints with inline styles, so the map theme needs !important. */
+.ve-map .la-vz-viewer-circular text,
+.ve-map .la-vz-viewer-circular tspan {
+	fill: var(--ve-map-ink) !important;
+	font-family: var(--ve-mono) !important;
+}
+.ve-map .la-vz-index-tick,
+.ve-map .la-vz-index-line,
+.ve-map .la-vz-label-line {
+	stroke: var(--ve-map-muted) !important;
+}
+.ve-map .la-vz-index-tick-label {
+	fill: var(--ve-map-muted) !important;
+}
+.ve-map .la-vz-cut-site {
+	stroke: var(--ve-map-cut) !important;
+}
+/* Annotation labels sit on the coloured arcs and stay dark for contrast. */
+.ve-map .la-vz-annotation-label,
+.ve-map text:has(> .la-vz-annotation-label) {
+	fill: #0b0f0d !important;
+}
+.ve-fasta {
+	display: flex;
+	flex-direction: column;
+}
+.ve-fasta .ve-input-actions {
+	margin: 0 0 0.5rem;
+}
+.ve-fasta textarea {
+	flex: 1;
+	min-height: 20rem;
+	/* Keep FASTA lines intact; scroll instead of wrapping. */
+	white-space: pre;
+	word-break: normal;
+	overflow-x: auto;
+}
+.ve-footnote {
+	margin: 0;
+}
+@media (max-width: 760px) {
+	.ve-filters,
+	.ve-custom-form,
+	.ve-result-grid {
+		grid-template-columns: 1fr;
+	}
+	.ve-map {
+		height: 22rem;
+		min-height: 22rem;
+	}
+}

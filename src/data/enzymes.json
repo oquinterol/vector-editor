@@ -1,0 +1,5773 @@
+{
+	"source": "REBASE",
+	"version": "610",
+	"suppliers": {
+		"B": "Thermo Fisher Scientific",
+		"E": "Agilent Technologies",
+		"I": "SibEnzyme Ltd.",
+		"J": "Nippon Gene Co., Ltd.",
+		"K": "Takara Bio Inc.",
+		"M": "Roche Custom Biotech",
+		"N": "New England Biolabs",
+		"O": "Toyobo Biochemicals",
+		"Q": "Molecular Biology Resources - CHIMERx",
+		"R": "Promega Corporation",
+		"S": "Sigma Chemical Corporation",
+		"V": "Vivantis Technologies",
+		"X": "EURx Ltd."
+	},
+	"enzymes": [
+		{
+			"name": "AarI",
+			"site": "CACCTGC",
+			"cut": 11,
+			"cutComplement": 15,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "AatII",
+			"site": "GACGTC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B",
+				"I",
+				"N",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "AbsI",
+			"site": "CCTCGAGG",
+			"cut": 2,
+			"cutComplement": 6,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Acc16I",
+			"site": "TGCGCA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Acc36I",
+			"site": "ACCTGC",
+			"cut": 10,
+			"cutComplement": 14,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Acc65I",
+			"site": "GGTACC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"I",
+				"N",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "AccB1I",
+			"site": "GGYRCC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "AccB7I",
+			"site": "CCANNNNNTGG",
+			"cut": 7,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "AccBSI",
+			"site": "CCGCTC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "AccI",
+			"site": "GTMKAC",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "AccII",
+			"site": "CGCG",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"J"
+			]
+		},
+		{
+			"name": "AccIII",
+			"site": "TCCGGA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"J",
+				"R"
+			]
+		},
+		{
+			"name": "AciI",
+			"site": "CCGC",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "AclI",
+			"site": "AACGTT",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "AclWI",
+			"site": "GGATC",
+			"cut": 9,
+			"cutComplement": 10,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "AcoI",
+			"site": "YGGCCR",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "AcsI",
+			"site": "RAATTY",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "AcuI",
+			"site": "CTGAAG",
+			"cut": 22,
+			"cutComplement": 20,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "AcvI",
+			"site": "CACGTG",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"Q",
+				"X"
+			]
+		},
+		{
+			"name": "AcyI",
+			"site": "GRCGYC",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"J",
+				"V"
+			]
+		},
+		{
+			"name": "AdeI",
+			"site": "CACNNNGTG",
+			"cut": 6,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "AfeI",
+			"site": "AGCGCT",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "AfiI",
+			"site": "CCNNNNNNNGG",
+			"cut": 7,
+			"cutComplement": 4,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "AflII",
+			"site": "CTTAAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"J",
+				"N"
+			]
+		},
+		{
+			"name": "AflIII",
+			"site": "ACRYGT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "AgeI",
+			"site": "ACCGGT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"J",
+				"N",
+				"R",
+				"S",
+				"V"
+			]
+		},
+		{
+			"name": "AgsI",
+			"site": "TTSAA",
+			"cut": 3,
+			"cutComplement": 2,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "AhdI",
+			"site": "GACNNNNNGTC",
+			"cut": 6,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "AhlI",
+			"site": "ACTAGT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "AjiI",
+			"site": "CACGTC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "AjnI",
+			"site": "CCWGG",
+			"cut": -1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "AleI",
+			"site": "CACNNNNGTG",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "AluBI",
+			"site": "AGCT",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "AluI",
+			"site": "AGCT",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "Alw21I",
+			"site": "GWGCWC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "Alw26I",
+			"site": "GTCTC",
+			"cut": 6,
+			"cutComplement": 10,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "Alw44I",
+			"site": "GTGCAC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"J",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "AlwI",
+			"site": "GGATC",
+			"cut": 9,
+			"cutComplement": 10,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "AlwNI",
+			"site": "CAGNNNCTG",
+			"cut": 6,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Ama87I",
+			"site": "CYCGRG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Aor13HI",
+			"site": "TCCGGA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "AoxI",
+			"site": "GGCC",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "ApaI",
+			"site": "GGGCCC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "ApaLI",
+			"site": "GTGCAC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"S",
+				"V"
+			]
+		},
+		{
+			"name": "ApeKI",
+			"site": "GCWGC",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "ApoI",
+			"site": "RAATTY",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "AscI",
+			"site": "GGCGCGCC",
+			"cut": 2,
+			"cutComplement": 6,
+			"suppliers": [
+				"N",
+				"S"
+			]
+		},
+		{
+			"name": "AseI",
+			"site": "ATTAAT",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"J",
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "AsiGI",
+			"site": "ACCGGT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "AsiSI",
+			"site": "GCGATCGC",
+			"cut": 5,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "AspA2I",
+			"site": "CCTAGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "AspEI",
+			"site": "GACNNNNNGTC",
+			"cut": 6,
+			"cutComplement": 5,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "AspLEI",
+			"site": "GCGC",
+			"cut": 3,
+			"cutComplement": 1,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "AspS9I",
+			"site": "GGNCC",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "AsuC2I",
+			"site": "CCSGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "AsuHPI",
+			"site": "GGTGA",
+			"cut": 13,
+			"cutComplement": 12,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "AsuII",
+			"site": "TTCGAA",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "AsuNHI",
+			"site": "GCTAGC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "AvaI",
+			"site": "CYCGRG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "AvaII",
+			"site": "GGWCC",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"J",
+				"N",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "AviII",
+			"site": "TGCGCA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "AvrII",
+			"site": "CCTAGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "AxyI",
+			"site": "CCTNAGG",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"J"
+			]
+		},
+		{
+			"name": "BaeGI",
+			"site": "GKGCMC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BalI",
+			"site": "TGGCCA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"J",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "BamHI",
+			"site": "GGATCC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "BanI",
+			"site": "GGYRCC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "BanII",
+			"site": "GRGCYC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"N",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "BauI",
+			"site": "CACGAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BbrPI",
+			"site": "CACGTG",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "BbsI",
+			"site": "GAAGAC",
+			"cut": 8,
+			"cutComplement": 12,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BbuI",
+			"site": "GCATGC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"R"
+			]
+		},
+		{
+			"name": "Bbv12I",
+			"site": "GWGCWC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BbvCI",
+			"site": "CCTCAGC",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BbvI",
+			"site": "GCAGC",
+			"cut": 13,
+			"cutComplement": 17,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BccI",
+			"site": "CCATC",
+			"cut": 9,
+			"cutComplement": 10,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BceAI",
+			"site": "ACGGC",
+			"cut": 17,
+			"cutComplement": 19,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BciVI",
+			"site": "GTATCC",
+			"cut": 12,
+			"cutComplement": 11,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BclI",
+			"site": "TGATCA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"J",
+				"N",
+				"R",
+				"S",
+				"V"
+			]
+		},
+		{
+			"name": "BcnI",
+			"site": "CCSGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BcoDI",
+			"site": "GTCTC",
+			"cut": 6,
+			"cutComplement": 10,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BcuI",
+			"site": "ACTAGT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BfaI",
+			"site": "CTAG",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BfmI",
+			"site": "CTRYAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BfuAI",
+			"site": "ACCTGC",
+			"cut": 10,
+			"cutComplement": 14,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BfuI",
+			"site": "GTATCC",
+			"cut": 12,
+			"cutComplement": 11,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BglI",
+			"site": "GCCNNNNNGGC",
+			"cut": 7,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"X"
+			]
+		},
+		{
+			"name": "BglII",
+			"site": "AGATCT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"X"
+			]
+		},
+		{
+			"name": "BlpI",
+			"site": "GCTNAGC",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BlsI",
+			"site": "GCNGC",
+			"cut": 3,
+			"cutComplement": 2,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BmcAI",
+			"site": "AGTACT",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "Bme1390I",
+			"site": "CCNGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Bme18I",
+			"site": "GGWCC",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BmeRI",
+			"site": "GACNNNNNGTC",
+			"cut": 6,
+			"cutComplement": 5,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "BmgBI",
+			"site": "CACGTC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BmiI",
+			"site": "GGNNCC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "BmrFI",
+			"site": "CCNGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "BmrI",
+			"site": "ACTGGG",
+			"cut": 11,
+			"cutComplement": 10,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BmtI",
+			"site": "GCTAGC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"I",
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BmuI",
+			"site": "ACTGGG",
+			"cut": 11,
+			"cutComplement": 10,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BmyI",
+			"site": "GDGCHC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "BoxI",
+			"site": "GACNNNNGTC",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "BpiI",
+			"site": "GAAGAC",
+			"cut": 8,
+			"cutComplement": 12,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BpmI",
+			"site": "CTGGAG",
+			"cut": 22,
+			"cutComplement": 20,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "Bpu10I",
+			"site": "CCTNAGC",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"I",
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "Bpu1102I",
+			"site": "GCTNAGC",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Bpu14I",
+			"site": "TTCGAA",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BpuEI",
+			"site": "CTTGAG",
+			"cut": 22,
+			"cutComplement": 20,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BpuMI",
+			"site": "CCSGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "Bsa29I",
+			"site": "ATCGAT",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BsaAI",
+			"site": "YACGTR",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BsaBI",
+			"site": "GATNNNNATC",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BsaHI",
+			"site": "GRCGYC",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BsaI",
+			"site": "GGTCTC",
+			"cut": 7,
+			"cutComplement": 11,
+			"suppliers": [
+				"N",
+				"S",
+				"V"
+			]
+		},
+		{
+			"name": "BsaJI",
+			"site": "CCNNGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BsaMI",
+			"site": "GAATGC",
+			"cut": 7,
+			"cutComplement": 5,
+			"suppliers": [
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "BsaWI",
+			"site": "WCCGGW",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Bsc4I",
+			"site": "CCNNNNNNNGG",
+			"cut": 7,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Bse118I",
+			"site": "RCCGGY",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Bse1I",
+			"site": "ACTGG",
+			"cut": 6,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Bse21I",
+			"site": "CCTNAGG",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Bse3DI",
+			"site": "GCAATG",
+			"cut": 8,
+			"cutComplement": 6,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Bse8I",
+			"site": "GATNNNNATC",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BseBI",
+			"site": "CCWGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "BseDI",
+			"site": "CCNNGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BseGI",
+			"site": "GGATG",
+			"cut": 7,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BseJI",
+			"site": "GATNNNNATC",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BseLI",
+			"site": "CCNNNNNNNGG",
+			"cut": 7,
+			"cutComplement": 4,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BseMI",
+			"site": "GCAATG",
+			"cut": 8,
+			"cutComplement": 6,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BseMII",
+			"site": "CTCAG",
+			"cut": 15,
+			"cutComplement": 13,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BseNI",
+			"site": "ACTGG",
+			"cut": 6,
+			"cutComplement": 4,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BsePI",
+			"site": "GCGCGC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BseRI",
+			"site": "GAGGAG",
+			"cut": 16,
+			"cutComplement": 14,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BseSI",
+			"site": "GKGCMC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BseX3I",
+			"site": "CGGCCG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BseXI",
+			"site": "GCAGC",
+			"cut": 13,
+			"cutComplement": 17,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BseYI",
+			"site": "CCCAGC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BsgI",
+			"site": "GTGCAG",
+			"cut": 22,
+			"cutComplement": 20,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Bsh1236I",
+			"site": "CGCG",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Bsh1285I",
+			"site": "CGRYCG",
+			"cut": 4,
+			"cutComplement": 2,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BshNI",
+			"site": "GGYRCC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BshTI",
+			"site": "ACCGGT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BshVI",
+			"site": "ATCGAT",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "BsiEI",
+			"site": "CGRYCG",
+			"cut": 4,
+			"cutComplement": 2,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BsiHKAI",
+			"site": "GWGCWC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BsiHKCI",
+			"site": "CYCGRG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"Q",
+				"X"
+			]
+		},
+		{
+			"name": "BsiWI",
+			"site": "CGTACG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BslFI",
+			"site": "GGGAC",
+			"cut": 15,
+			"cutComplement": 19,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BslI",
+			"site": "CCNNNNNNNGG",
+			"cut": 7,
+			"cutComplement": 4,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BsmAI",
+			"site": "GTCTC",
+			"cut": 6,
+			"cutComplement": 10,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BsmBI",
+			"site": "CGTCTC",
+			"cut": 7,
+			"cutComplement": 11,
+			"suppliers": [
+				"N",
+				"S"
+			]
+		},
+		{
+			"name": "BsmFI",
+			"site": "GGGAC",
+			"cut": 15,
+			"cutComplement": 19,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BsmI",
+			"site": "GAATGC",
+			"cut": 7,
+			"cutComplement": 5,
+			"suppliers": [
+				"J",
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BsnI",
+			"site": "GGCC",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "Bso31I",
+			"site": "GGTCTC",
+			"cut": 7,
+			"cutComplement": 11,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BsoBI",
+			"site": "CYCGRG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Bsp119I",
+			"site": "TTCGAA",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Bsp120I",
+			"site": "GGGCCC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Bsp1286I",
+			"site": "GDGCHC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"J",
+				"N",
+				"R"
+			]
+		},
+		{
+			"name": "Bsp13I",
+			"site": "TCCGGA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Bsp1407I",
+			"site": "TGTACA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Bsp143I",
+			"site": "GATC",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "Bsp1720I",
+			"site": "GCTNAGC",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Bsp19I",
+			"site": "CCATGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Bsp68I",
+			"site": "TCGCGA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BspACI",
+			"site": "CCGC",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BspCNI",
+			"site": "CTCAG",
+			"cut": 14,
+			"cutComplement": 12,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BspDI",
+			"site": "ATCGAT",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BspEI",
+			"site": "TCCGGA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BspFNI",
+			"site": "CGCG",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BspHI",
+			"site": "TCATGA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"X"
+			]
+		},
+		{
+			"name": "BspLI",
+			"site": "GGNNCC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BspMI",
+			"site": "ACCTGC",
+			"cut": 10,
+			"cutComplement": 14,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BspOI",
+			"site": "GCTAGC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BspPI",
+			"site": "GGATC",
+			"cut": 9,
+			"cutComplement": 10,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BspQI",
+			"site": "GCTCTTC",
+			"cut": 8,
+			"cutComplement": 11,
+			"suppliers": [
+				"K",
+				"N"
+			]
+		},
+		{
+			"name": "BspTI",
+			"site": "CTTAAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "BsrBI",
+			"site": "CCGCTC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BsrDI",
+			"site": "GCAATG",
+			"cut": 8,
+			"cutComplement": 6,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BsrFI",
+			"site": "RCCGGY",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BsrGI",
+			"site": "TGTACA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"S"
+			]
+		},
+		{
+			"name": "BsrI",
+			"site": "ACTGG",
+			"cut": 6,
+			"cutComplement": 4,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BsrSI",
+			"site": "ACTGG",
+			"cut": 6,
+			"cutComplement": 4,
+			"suppliers": [
+				"R"
+			]
+		},
+		{
+			"name": "BssECI",
+			"site": "CCNNGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BssHII",
+			"site": "GCGCGC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "BssMI",
+			"site": "GATC",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "BssNAI",
+			"site": "GTATAC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BssNI",
+			"site": "GRCGYC",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "BssSI",
+			"site": "CACGAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BssT1I",
+			"site": "CCWWGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Bst1107I",
+			"site": "GTATAC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "Bst2BI",
+			"site": "CACGAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Bst2UI",
+			"site": "CCWGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Bst4CI",
+			"site": "ACNGT",
+			"cut": 3,
+			"cutComplement": 2,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Bst6I",
+			"site": "CTCTTC",
+			"cut": 7,
+			"cutComplement": 10,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Bst98I",
+			"site": "CTTAAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "BstACI",
+			"site": "GRCGYC",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BstAFI",
+			"site": "CTTAAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BstAPI",
+			"site": "GCANNNNNTGC",
+			"cut": 7,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "BstAUI",
+			"site": "TGTACA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstBAI",
+			"site": "YACGTR",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstBI",
+			"site": "TTCGAA",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"N",
+				"S"
+			]
+		},
+		{
+			"name": "BstC8I",
+			"site": "GCNNGC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BstDEI",
+			"site": "CTNAG",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstDSI",
+			"site": "CCRYGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstEII",
+			"site": "GGTNACC",
+			"cut": 1,
+			"cutComplement": 6,
+			"suppliers": [
+				"J",
+				"N",
+				"R",
+				"S",
+				"V"
+			]
+		},
+		{
+			"name": "BstENI",
+			"site": "CCTNNNNNAGG",
+			"cut": 5,
+			"cutComplement": 6,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstF5I",
+			"site": "GGATG",
+			"cut": 7,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BstFI",
+			"site": "AAGCTT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "BstFNI",
+			"site": "CGCG",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstH2I",
+			"site": "RGCGCY",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstHHI",
+			"site": "GCGC",
+			"cut": 3,
+			"cutComplement": 1,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstKTI",
+			"site": "GATC",
+			"cut": 3,
+			"cutComplement": 1,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BstMAI",
+			"site": "GTCTC",
+			"cut": 6,
+			"cutComplement": 10,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstMBI",
+			"site": "GATC",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstMCI",
+			"site": "CGRYCG",
+			"cut": 4,
+			"cutComplement": 2,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstMWI",
+			"site": "GCNNNNNNNGC",
+			"cut": 7,
+			"cutComplement": 4,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BstNI",
+			"site": "CCWGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BstNSI",
+			"site": "RCATGY",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstOI",
+			"site": "CCWGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"R"
+			]
+		},
+		{
+			"name": "BstPAI",
+			"site": "GACNNNNGTC",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstSCI",
+			"site": "CCNGG",
+			"cut": -1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BstSFI",
+			"site": "CTRYAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BstSLI",
+			"site": "GKGCMC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BstSNI",
+			"site": "TACGTA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstUI",
+			"site": "CGCG",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "BstV1I",
+			"site": "GCAGC",
+			"cut": 13,
+			"cutComplement": 17,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BstV2I",
+			"site": "GAAGAC",
+			"cut": 8,
+			"cutComplement": 12,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstX2I",
+			"site": "RGATCY",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BstXI",
+			"site": "CCANNNNNNTGG",
+			"cut": 8,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "BstYI",
+			"site": "RGATCY",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BstZ17I",
+			"site": "GTATAC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BstZI",
+			"site": "CGGCCG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"R"
+			]
+		},
+		{
+			"name": "Bsu15I",
+			"site": "ATCGAT",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Bsu36I",
+			"site": "CCTNAGG",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"R"
+			]
+		},
+		{
+			"name": "BsuI",
+			"site": "GTATCC",
+			"cut": 12,
+			"cutComplement": 11,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BsuRI",
+			"site": "GGCC",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"B",
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "BtgI",
+			"site": "CCRYGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BtgZI",
+			"site": "GCGATG",
+			"cut": 16,
+			"cutComplement": 20,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BtrI",
+			"site": "CACGTC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "BtsCI",
+			"site": "GGATG",
+			"cut": 7,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BtsI",
+			"site": "GCAGTG",
+			"cut": 8,
+			"cutComplement": 6,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BtsIMutI",
+			"site": "CAGTG",
+			"cut": 7,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "BtuMI",
+			"site": "TCGCGA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "BveI",
+			"site": "ACCTGC",
+			"cut": 10,
+			"cutComplement": 14,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Cac8I",
+			"site": "GCNNGC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "CaiI",
+			"site": "CAGNNNCTG",
+			"cut": 6,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "CciI",
+			"site": "TCATGA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "CciNI",
+			"site": "GCGGCCGC",
+			"cut": 2,
+			"cutComplement": 6,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "CelII",
+			"site": "GCTNAGC",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "CfoI",
+			"site": "GCGC",
+			"cut": 3,
+			"cutComplement": 1,
+			"suppliers": [
+				"R"
+			]
+		},
+		{
+			"name": "Cfr10I",
+			"site": "RCCGGY",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "Cfr13I",
+			"site": "GGNCC",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "Cfr42I",
+			"site": "CCGCGG",
+			"cut": 4,
+			"cutComplement": 2,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "Cfr9I",
+			"site": "CCCGGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "ClaI",
+			"site": "ATCGAT",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "CpoI",
+			"site": "CGGWCCG",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "CseI",
+			"site": "GACGC",
+			"cut": 10,
+			"cutComplement": 15,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Csp45I",
+			"site": "TTCGAA",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"R"
+			]
+		},
+		{
+			"name": "Csp6I",
+			"site": "GTAC",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "CspI",
+			"site": "CGGWCCG",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"R"
+			]
+		},
+		{
+			"name": "CviJI",
+			"site": "RGCY",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"Q",
+				"X"
+			]
+		},
+		{
+			"name": "CviKI-1",
+			"site": "RGCY",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "CviQI",
+			"site": "GTAC",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "DdeI",
+			"site": "CTNAG",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "DinI",
+			"site": "GGCGCC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "DpnI",
+			"site": "GATC",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"B",
+				"E",
+				"N",
+				"O",
+				"Q",
+				"R",
+				"S",
+				"X"
+			]
+		},
+		{
+			"name": "DpnII",
+			"site": "GATC",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"N",
+				"S"
+			]
+		},
+		{
+			"name": "DraI",
+			"site": "TTTAAA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "DraIII",
+			"site": "CACNNNGTG",
+			"cut": 6,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "DrdI",
+			"site": "GACNNNNNNGTC",
+			"cut": 7,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "DriI",
+			"site": "GACNNNNNGTC",
+			"cut": 6,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "DsaI",
+			"site": "CCRYGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "DseDI",
+			"site": "GACNNNNNNGTC",
+			"cut": 7,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "EaeI",
+			"site": "YGGCCR",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "EagI",
+			"site": "CGGCCG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"S",
+				"V"
+			]
+		},
+		{
+			"name": "Eam1104I",
+			"site": "CTCTTC",
+			"cut": 7,
+			"cutComplement": 10,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Eam1105I",
+			"site": "GACNNNNNGTC",
+			"cut": 6,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "EarI",
+			"site": "CTCTTC",
+			"cut": 7,
+			"cutComplement": 10,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "EciI",
+			"site": "GGCGGA",
+			"cut": 17,
+			"cutComplement": 15,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Ecl136II",
+			"site": "GAGCTC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "EclHKI",
+			"site": "GACNNNNNGTC",
+			"cut": 6,
+			"cutComplement": 5,
+			"suppliers": [
+				"R"
+			]
+		},
+		{
+			"name": "Eco105I",
+			"site": "TACGTA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Eco130I",
+			"site": "CCWWGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Eco147I",
+			"site": "AGGCCT",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Eco24I",
+			"site": "GRGCYC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Eco31I",
+			"site": "GGTCTC",
+			"cut": 7,
+			"cutComplement": 11,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "Eco32I",
+			"site": "GATATC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Eco47I",
+			"site": "GGWCC",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Eco47III",
+			"site": "AGCGCT",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"R",
+				"S"
+			]
+		},
+		{
+			"name": "Eco52I",
+			"site": "CGGCCG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Eco53kI",
+			"site": "GAGCTC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Eco57I",
+			"site": "CTGAAG",
+			"cut": 22,
+			"cutComplement": 20,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Eco72I",
+			"site": "CACGTG",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Eco81I",
+			"site": "CCTNAGG",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Eco88I",
+			"site": "CYCGRG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Eco91I",
+			"site": "GGTNACC",
+			"cut": 1,
+			"cutComplement": 6,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "EcoICRI",
+			"site": "GAGCTC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "EcoNI",
+			"site": "CCTNNNNNAGG",
+			"cut": 5,
+			"cutComplement": 6,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "EcoO109I",
+			"site": "RGGNCCY",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"J",
+				"N"
+			]
+		},
+		{
+			"name": "EcoRI",
+			"site": "GAATTC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "EcoRII",
+			"site": "CCWGG",
+			"cut": -1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"J",
+				"S",
+				"V"
+			]
+		},
+		{
+			"name": "EcoRV",
+			"site": "GATATC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "EcoT38I",
+			"site": "GRGCYC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"J"
+			]
+		},
+		{
+			"name": "EgeI",
+			"site": "GGCGCC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "EheI",
+			"site": "GGCGCC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "ErhI",
+			"site": "CCWWGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Esp3I",
+			"site": "CGTCTC",
+			"cut": 7,
+			"cutComplement": 11,
+			"suppliers": [
+				"B",
+				"N",
+				"S"
+			]
+		},
+		{
+			"name": "FaeI",
+			"site": "CATG",
+			"cut": 4,
+			"cutComplement": -1,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "FaiI",
+			"site": "YATR",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "FaqI",
+			"site": "GGGAC",
+			"cut": 15,
+			"cutComplement": 19,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "FatI",
+			"site": "CATG",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "FauI",
+			"site": "CCCGC",
+			"cut": 9,
+			"cutComplement": 11,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "FauNDI",
+			"site": "CATATG",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "FblI",
+			"site": "GTMKAC",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Fnu4HI",
+			"site": "GCNGC",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "FokI",
+			"site": "GGATG",
+			"cut": 14,
+			"cutComplement": 18,
+			"suppliers": [
+				"I",
+				"J",
+				"N",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "FriOI",
+			"site": "GRGCYC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "FseI",
+			"site": "GGCCGGCC",
+			"cut": 6,
+			"cutComplement": 2,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Fsp4HI",
+			"site": "GCNGC",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "FspAI",
+			"site": "RTGCGCAY",
+			"cut": 4,
+			"cutComplement": 4,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "FspBI",
+			"site": "CTAG",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "FspI",
+			"site": "TGCGCA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"J",
+				"N",
+				"S"
+			]
+		},
+		{
+			"name": "GlaI",
+			"site": "GCGC",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "GluI",
+			"site": "GCNGC",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "GsaI",
+			"site": "CCCAGC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "GsuI",
+			"site": "CTGGAG",
+			"cut": 22,
+			"cutComplement": 20,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "HaeII",
+			"site": "RGCGCY",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"J",
+				"N",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "HaeIII",
+			"site": "GGCC",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "HgaI",
+			"site": "GACGC",
+			"cut": 10,
+			"cutComplement": 15,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "HhaI",
+			"site": "GCGC",
+			"cut": 3,
+			"cutComplement": 1,
+			"suppliers": [
+				"B",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "Hin1I",
+			"site": "GRCGYC",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "Hin1II",
+			"site": "CATG",
+			"cut": 4,
+			"cutComplement": -1,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Hin6I",
+			"site": "GCGC",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "HincII",
+			"site": "GTYRAC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "HindII",
+			"site": "GTYRAC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "HindIII",
+			"site": "AAGCTT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "HinfI",
+			"site": "GANTC",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "HinP1I",
+			"site": "GCGC",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "HpaI",
+			"site": "GTTAAC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "HpaII",
+			"site": "CCGG",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"I",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "HphI",
+			"site": "GGTGA",
+			"cut": 13,
+			"cutComplement": 12,
+			"suppliers": [
+				"B",
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "Hpy166II",
+			"site": "GTNNAC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Hpy188I",
+			"site": "TCNGA",
+			"cut": 3,
+			"cutComplement": 2,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Hpy188III",
+			"site": "TCNNGA",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Hpy8I",
+			"site": "GTNNAC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Hpy99I",
+			"site": "CGWCG",
+			"cut": 5,
+			"cutComplement": -1,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "HpyAV",
+			"site": "CCTTC",
+			"cut": 11,
+			"cutComplement": 10,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "HpyCH4III",
+			"site": "ACNGT",
+			"cut": 3,
+			"cutComplement": 2,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "HpyCH4IV",
+			"site": "ACGT",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "HpyCH4V",
+			"site": "TGCA",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "HpyF10VI",
+			"site": "GCNNNNNNNGC",
+			"cut": 7,
+			"cutComplement": 4,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "HpyF3I",
+			"site": "CTNAG",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "HpySE526I",
+			"site": "ACGT",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Hsp92I",
+			"site": "GRCGYC",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"R"
+			]
+		},
+		{
+			"name": "Hsp92II",
+			"site": "CATG",
+			"cut": 4,
+			"cutComplement": -1,
+			"suppliers": [
+				"R"
+			]
+		},
+		{
+			"name": "HspAI",
+			"site": "GCGC",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "KasI",
+			"site": "GGCGCC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Kpn2I",
+			"site": "TCCGGA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "KpnI",
+			"site": "GGTACC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "KroI",
+			"site": "GCCGGC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "KroNI",
+			"site": "GCCGGC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Ksp22I",
+			"site": "TGATCA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "KspAI",
+			"site": "GTTAAC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "KspI",
+			"site": "CCGCGG",
+			"cut": 4,
+			"cutComplement": 2,
+			"suppliers": [
+				"S"
+			]
+		},
+		{
+			"name": "Kzo9I",
+			"site": "GATC",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "LguI",
+			"site": "GCTCTTC",
+			"cut": 8,
+			"cutComplement": 11,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "LmnI",
+			"site": "GCTCC",
+			"cut": 6,
+			"cutComplement": 4,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Lsp1109I",
+			"site": "GCAGC",
+			"cut": 13,
+			"cutComplement": 17,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "LweI",
+			"site": "GCATC",
+			"cut": 10,
+			"cutComplement": 14,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "MabI",
+			"site": "ACCWGGT",
+			"cut": 1,
+			"cutComplement": 6,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "MalI",
+			"site": "GATC",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "MamI",
+			"site": "GATNNNNATC",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "MauBI",
+			"site": "CGCGCGCG",
+			"cut": 2,
+			"cutComplement": 6,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "MbiI",
+			"site": "CCGCTC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "MboI",
+			"site": "GATC",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "MboII",
+			"site": "GAAGA",
+			"cut": 13,
+			"cutComplement": 12,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "MfeI",
+			"site": "CAATTG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "MhlI",
+			"site": "GDGCHC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "MlsI",
+			"site": "TGGCCA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "MluCI",
+			"site": "AATT",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "MluI",
+			"site": "ACGCGT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "Mly113I",
+			"site": "GGCGCC",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "MlyI",
+			"site": "GAGTC",
+			"cut": 10,
+			"cutComplement": 10,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "MmeI",
+			"site": "TCCRAC",
+			"cut": 26,
+			"cutComplement": 24,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "MnlI",
+			"site": "CCTC",
+			"cut": 11,
+			"cutComplement": 10,
+			"suppliers": [
+				"B",
+				"I",
+				"N",
+				"Q",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "Mox20I",
+			"site": "TGGCCA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Mph1103I",
+			"site": "ATGCAT",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "MreI",
+			"site": "CGCCGGCG",
+			"cut": 2,
+			"cutComplement": 6,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "MroI",
+			"site": "TCCGGA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "MroNI",
+			"site": "GCCGGC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "MroXI",
+			"site": "GAANNNNTTC",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "MscI",
+			"site": "TGGCCA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "MseI",
+			"site": "TTAA",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "MslI",
+			"site": "CAYNNNNRTG",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Msp20I",
+			"site": "TGGCCA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "MspA1I",
+			"site": "CMGCKG",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"N",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "MspI",
+			"site": "CCGG",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "MspJI",
+			"site": "CNNR",
+			"cut": 13,
+			"cutComplement": 17,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "MspR9I",
+			"site": "CCNGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "MssI",
+			"site": "GTTTAAAC",
+			"cut": 4,
+			"cutComplement": 4,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "MteI",
+			"site": "GCGCNGCGC",
+			"cut": 4,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "MunI",
+			"site": "CAATTG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Mva1269I",
+			"site": "GAATGC",
+			"cut": 7,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "MvaI",
+			"site": "CCWGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "MwoI",
+			"site": "GCNNNNNNNGC",
+			"cut": 7,
+			"cutComplement": 4,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "NaeI",
+			"site": "GCCGGC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N",
+				"R"
+			]
+		},
+		{
+			"name": "NarI",
+			"site": "GGCGCC",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "NciI",
+			"site": "CCSGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"J",
+				"N",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "NcoI",
+			"site": "CCATGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "NdeI",
+			"site": "CATATG",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "NdeII",
+			"site": "GATC",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"J",
+				"R"
+			]
+		},
+		{
+			"name": "NgoMIV",
+			"site": "GCCGGC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "NheI",
+			"site": "GCTAGC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "NlaIII",
+			"site": "CATG",
+			"cut": 4,
+			"cutComplement": -1,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "NlaIV",
+			"site": "GGNNCC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "NmeAIII",
+			"site": "GCCGAG",
+			"cut": 27,
+			"cutComplement": 25,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "NmuCI",
+			"site": "GTSAC",
+			"cut": -1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "NotI",
+			"site": "GCGGCCGC",
+			"cut": 2,
+			"cutComplement": 6,
+			"suppliers": [
+				"B",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "NruI",
+			"site": "TCGCGA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "NsbI",
+			"site": "TGCGCA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "NsiI",
+			"site": "ATGCAT",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "NspI",
+			"site": "RCATGY",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "NspV",
+			"site": "TTCGAA",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"J"
+			]
+		},
+		{
+			"name": "OliI",
+			"site": "CACNNNNGTG",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PacI",
+			"site": "TTAATTAA",
+			"cut": 5,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"N",
+				"S"
+			]
+		},
+		{
+			"name": "PaeI",
+			"site": "GCATGC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PaeR7I",
+			"site": "CTCGAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "PagI",
+			"site": "TCATGA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PalAI",
+			"site": "GGCGCGCC",
+			"cut": 2,
+			"cutComplement": 6,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "PaqCI",
+			"site": "CACCTGC",
+			"cut": 11,
+			"cutComplement": 15,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "PasI",
+			"site": "CCCWGGG",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PauI",
+			"site": "GCGCGC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PceI",
+			"site": "AGGCCT",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "PciI",
+			"site": "ACATGT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "PciSI",
+			"site": "GCTCTTC",
+			"cut": 8,
+			"cutComplement": 11,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "PcsI",
+			"site": "WCGNNNNNNNCGW",
+			"cut": 7,
+			"cutComplement": 6,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "PctI",
+			"site": "GAATGC",
+			"cut": 7,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "PdiI",
+			"site": "GCCGGC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PdmI",
+			"site": "GAANNNNTTC",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PfeI",
+			"site": "GAWTC",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Pfl23II",
+			"site": "CGTACG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PflFI",
+			"site": "GACNNNGTC",
+			"cut": 4,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "PflMI",
+			"site": "CCANNNNNTGG",
+			"cut": 7,
+			"cutComplement": 4,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "PfoI",
+			"site": "TCCNGGA",
+			"cut": 1,
+			"cutComplement": 6,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PinAI",
+			"site": "ACCGGT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"Q",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "PkrI",
+			"site": "GCNGC",
+			"cut": 3,
+			"cutComplement": 2,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Ple19I",
+			"site": "CGATCG",
+			"cut": 4,
+			"cutComplement": 2,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "PleI",
+			"site": "GAGTC",
+			"cut": 9,
+			"cutComplement": 10,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "PluTI",
+			"site": "GGCGCC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "PmeI",
+			"site": "GTTTAAAC",
+			"cut": 4,
+			"cutComplement": 4,
+			"suppliers": [
+				"N",
+				"S"
+			]
+		},
+		{
+			"name": "PmlI",
+			"site": "CACGTG",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "PpsI",
+			"site": "GAGTC",
+			"cut": 9,
+			"cutComplement": 10,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "Ppu21I",
+			"site": "YACGTR",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PpuMI",
+			"site": "RGGWCCY",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "PscI",
+			"site": "ACATGT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PshAI",
+			"site": "GACNNNNGTC",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "PsiI",
+			"site": "TTATAA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "Psp124BI",
+			"site": "GAGCTC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Psp1406I",
+			"site": "AACGTT",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Psp5II",
+			"site": "RGGWCCY",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Psp6I",
+			"site": "CCWGG",
+			"cut": -1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "PspCI",
+			"site": "CACGTG",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "PspEI",
+			"site": "GGTNACC",
+			"cut": 1,
+			"cutComplement": 6,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "PspGI",
+			"site": "CCWGG",
+			"cut": -1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"S"
+			]
+		},
+		{
+			"name": "PspLI",
+			"site": "CGTACG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "PspN4I",
+			"site": "GGNNCC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "PspOMI",
+			"site": "GGGCCC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "PspPPI",
+			"site": "RGGWCCY",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "PspXI",
+			"site": "VCTCGAGB",
+			"cut": 2,
+			"cutComplement": 6,
+			"suppliers": [
+				"I",
+				"N"
+			]
+		},
+		{
+			"name": "PstI",
+			"site": "CTGCAG",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "PstNI",
+			"site": "CAGNNNCTG",
+			"cut": 6,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "PsuI",
+			"site": "RGATCY",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PsyI",
+			"site": "GACNNNGTC",
+			"cut": 4,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "PvuI",
+			"site": "CGATCG",
+			"cut": 4,
+			"cutComplement": 2,
+			"suppliers": [
+				"B",
+				"N",
+				"Q",
+				"R",
+				"X"
+			]
+		},
+		{
+			"name": "PvuII",
+			"site": "CAGCTG",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "RgaI",
+			"site": "GCGATCGC",
+			"cut": 5,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "RigI",
+			"site": "GGCCGGCC",
+			"cut": 6,
+			"cutComplement": 2,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "RsaI",
+			"site": "GTAC",
+			"cut": 2,
+			"cutComplement": 2,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "RsaNI",
+			"site": "GTAC",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "RseI",
+			"site": "CAYNNNNRTG",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Rsr2I",
+			"site": "CGGWCCG",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "RsrII",
+			"site": "CGGWCCG",
+			"cut": 2,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"Q",
+				"X"
+			]
+		},
+		{
+			"name": "SacI",
+			"site": "GAGCTC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "SacII",
+			"site": "CCGCGG",
+			"cut": 4,
+			"cutComplement": 2,
+			"suppliers": [
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "SalI",
+			"site": "GTCGAC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "SapI",
+			"site": "GCTCTTC",
+			"cut": 8,
+			"cutComplement": 11,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "SatI",
+			"site": "GCNGC",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Sau3AI",
+			"site": "GATC",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"J",
+				"N",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "Sau96I",
+			"site": "GGNCC",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"J",
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "SbfI",
+			"site": "CCTGCAGG",
+			"cut": 6,
+			"cutComplement": 2,
+			"suppliers": [
+				"I",
+				"N",
+				"S",
+				"V"
+			]
+		},
+		{
+			"name": "ScaI",
+			"site": "AGTACT",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "SchI",
+			"site": "GAGTC",
+			"cut": 10,
+			"cutComplement": 10,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "ScrFI",
+			"site": "CCNGG",
+			"cut": 2,
+			"cutComplement": 3,
+			"suppliers": [
+				"J",
+				"N",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "SdaI",
+			"site": "CCTGCAGG",
+			"cut": 6,
+			"cutComplement": 2,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "SduI",
+			"site": "GDGCHC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "SetI",
+			"site": "ASST",
+			"cut": 4,
+			"cutComplement": -1,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "SexAI",
+			"site": "ACCWGGT",
+			"cut": 1,
+			"cutComplement": 6,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "SfaAI",
+			"site": "GCGATCGC",
+			"cut": 5,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "SfaNI",
+			"site": "GCATC",
+			"cut": 10,
+			"cutComplement": 14,
+			"suppliers": [
+				"I",
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "SfcI",
+			"site": "CTRYAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "SfiI",
+			"site": "GGCCNNNNNGGCC",
+			"cut": 8,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "SfoI",
+			"site": "GGCGCC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "Sfr274I",
+			"site": "CTCGAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Sfr303I",
+			"site": "CCGCGG",
+			"cut": 4,
+			"cutComplement": 2,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "SfuI",
+			"site": "TTCGAA",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "SgeI",
+			"site": "CNNG",
+			"cut": 13,
+			"cutComplement": 17,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "SgfI",
+			"site": "GCGATCGC",
+			"cut": 5,
+			"cutComplement": 3,
+			"suppliers": [
+				"R"
+			]
+		},
+		{
+			"name": "SgrAI",
+			"site": "CRCCGGYG",
+			"cut": 2,
+			"cutComplement": 6,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "SgrDI",
+			"site": "CGTCGACG",
+			"cut": 2,
+			"cutComplement": 6,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "SgsI",
+			"site": "GGCGCGCC",
+			"cut": 2,
+			"cutComplement": 6,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "SinI",
+			"site": "GGWCC",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"R"
+			]
+		},
+		{
+			"name": "SmaI",
+			"site": "CCCGGG",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "SmiI",
+			"site": "ATTTAAAT",
+			"cut": 4,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "SmiMI",
+			"site": "CAYNNNNRTG",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "SmlI",
+			"site": "CTYRAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "SmoI",
+			"site": "CTYRAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "SnaBI",
+			"site": "TACGTA",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"N",
+				"R"
+			]
+		},
+		{
+			"name": "SpeI",
+			"site": "ACTAGT",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "SphI",
+			"site": "GCATGC",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "SrfI",
+			"site": "GCCCGGGC",
+			"cut": 4,
+			"cutComplement": 4,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Sse9I",
+			"site": "AATT",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "SsiI",
+			"site": "CCGC",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "SspDI",
+			"site": "GGCGCC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "SspI",
+			"site": "AATATT",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "SspMI",
+			"site": "CTAG",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "StuI",
+			"site": "AGGCCT",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"J",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"X"
+			]
+		},
+		{
+			"name": "StyD4I",
+			"site": "CCNGG",
+			"cut": -1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "StyI",
+			"site": "CCWWGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"J",
+				"N",
+				"R"
+			]
+		},
+		{
+			"name": "SwaI",
+			"site": "ATTTAAAT",
+			"cut": 4,
+			"cutComplement": 4,
+			"suppliers": [
+				"J",
+				"N"
+			]
+		},
+		{
+			"name": "TaaI",
+			"site": "ACNGT",
+			"cut": 3,
+			"cutComplement": 2,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "TaiI",
+			"site": "ACGT",
+			"cut": 4,
+			"cutComplement": -1,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "TaqI",
+			"site": "TCGA",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "TaqII",
+			"site": "GACCGA",
+			"cut": 17,
+			"cutComplement": 15,
+			"suppliers": [
+				"Q",
+				"X"
+			]
+		},
+		{
+			"name": "TasI",
+			"site": "AATT",
+			"cut": -1,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "TatI",
+			"site": "WGTACW",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "TauI",
+			"site": "GCSGC",
+			"cut": 4,
+			"cutComplement": 1,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "TfiI",
+			"site": "GAWTC",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Tru1I",
+			"site": "TTAA",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "Tru9I",
+			"site": "TTAA",
+			"cut": 1,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "TscAI",
+			"site": "CASTG",
+			"cut": 7,
+			"cutComplement": -3,
+			"suppliers": [
+				"B"
+			]
+		},
+		{
+			"name": "TseFI",
+			"site": "GTSAC",
+			"cut": -1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I"
+			]
+		},
+		{
+			"name": "TseI",
+			"site": "GCWGC",
+			"cut": 1,
+			"cutComplement": 4,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Tsp45I",
+			"site": "GTSAC",
+			"cut": -1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "TspDTI",
+			"site": "ATGAA",
+			"cut": 16,
+			"cutComplement": 14,
+			"suppliers": [
+				"Q",
+				"X"
+			]
+		},
+		{
+			"name": "TspGWI",
+			"site": "ACGGA",
+			"cut": 16,
+			"cutComplement": 14,
+			"suppliers": [
+				"Q",
+				"X"
+			]
+		},
+		{
+			"name": "TspMI",
+			"site": "CCCGGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "TspRI",
+			"site": "CASTG",
+			"cut": 7,
+			"cutComplement": -3,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "Tth111I",
+			"site": "GACNNNGTC",
+			"cut": 4,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "Van91I",
+			"site": "CCANNNNNTGG",
+			"cut": 7,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "Vha464I",
+			"site": "CTTAAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "VneI",
+			"site": "GTGCAC",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "VspI",
+			"site": "ATTAAT",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"I",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "XagI",
+			"site": "CCTNNNNNAGG",
+			"cut": 5,
+			"cutComplement": 6,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "XapI",
+			"site": "RAATTY",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "XbaI",
+			"site": "TCTAGA",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"I",
+				"J",
+				"M",
+				"N",
+				"Q",
+				"R",
+				"S",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "XceI",
+			"site": "RCATGY",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "XcmI",
+			"site": "CCANNNNNNNNNTGG",
+			"cut": 8,
+			"cutComplement": 7,
+			"suppliers": [
+				"N"
+			]
+		},
+		{
+			"name": "XhoI",
+			"site": "CTCGAG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"J",
+				"N",
+				"Q",
+				"R",
+				"V",
+				"X"
+			]
+		},
+		{
+			"name": "XhoII",
+			"site": "RGATCY",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "XmaCI",
+			"site": "CCCGGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"V"
+			]
+		},
+		{
+			"name": "XmaI",
+			"site": "CCCGGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"I",
+				"N",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "XmaJI",
+			"site": "CCTAGG",
+			"cut": 1,
+			"cutComplement": 5,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "XmiI",
+			"site": "GTMKAC",
+			"cut": 2,
+			"cutComplement": 4,
+			"suppliers": [
+				"B",
+				"V"
+			]
+		},
+		{
+			"name": "XmnI",
+			"site": "GAANNNNTTC",
+			"cut": 5,
+			"cutComplement": 5,
+			"suppliers": [
+				"N",
+				"R",
+				"V"
+			]
+		},
+		{
+			"name": "ZraI",
+			"site": "GACGTC",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"N",
+				"V"
+			]
+		},
+		{
+			"name": "ZrmI",
+			"site": "AGTACT",
+			"cut": 3,
+			"cutComplement": 3,
+			"suppliers": [
+				"I",
+				"V"
+			]
+		},
+		{
+			"name": "Zsp2I",
+			"site": "ATGCAT",
+			"cut": 5,
+			"cutComplement": 1,
+			"suppliers": [
+				"V"
+			]
+		}
+	]
+}

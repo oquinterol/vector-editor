@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "Si usas este software, por favor cítalo así. / If you use this software, please cite it as below."
+title: "Vector editor: in-browser cloning simulator with REBASE enzymes"
+type: software
+version: 0.1.0
+authors:
+  - family-names: "Quintero López"
+    given-names: "Oscar Alexis"
+    orcid: "https://orcid.org/0000-0001-8926-6400"
+repository-code: "https://github.com/oquinterol/vector-editor"
+url: "https://oquinterol.com/en/tools/vector-editor/"
+license: MIT
+keywords:
+  - plasmid
+  - molecular cloning
+  - restriction enzymes
+  - REBASE
+  - open science
+references:
+  - type: article
+    title: "REBASE in 2023: a database for enzymes and regulatory functions"
+    authors:
+      - family-names: Roberts
+        given-names: Richard J.
+      - family-names: Vincze
+        given-names: Tamas
+      - family-names: Posfai
+        given-names: Janos
+      - family-names: Macelis
+        given-names: Dana
+    journal: "Nucleic Acids Research"
+    year: 2023
+    doi: "10.1093/nar/gkac975"
