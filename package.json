@@ -45,7 +45,8 @@
 		"typecheck": "tsc --noEmit",
 		"enzymes": "node scripts/build-enzymes.mjs",
 		"app:dev": "vite",
-		"app:build": "vite build"
+		"app:build": "vite build",
+		"app:deploy": "pnpm app:build && wrangler deploy"
 	},
 	"peerDependencies": {
 		"react": "^18.0.0 || ^19.0.0",
