@@ -1,0 +1,12 @@
+{
+	// Static app served by a Cloudflare Worker at vector-editor.oquinterol.com.
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "vector-editor",
+	"compatibility_date": "2026-10-01",
+	"assets": {
+		"directory": "./app-dist",
+		"not_found_handling": "single-page-application"
+	},
+	"routes": [{ "pattern": "vector-editor.oquinterol.com", "custom_domain": true }],
+	"observability": { "enabled": true }
+}
