@@ -1,0 +1,140 @@
+/* Standalone app: biopunk palette (shared with oquinterol.com), no external fonts. */
+:root {
+	--bp-void: #030504;
+	--bp-ink: #070a09;
+	--bp-lab: #101713;
+	--bp-membrane: #17211b;
+	--bp-tissue: #26332a;
+	--bp-boundary: #4d6354;
+	--bp-sterile: #d9e4de;
+	--bp-bone: #b7c5bd;
+	--bp-muted: #87968d;
+	--bp-bio: #a4e66d;
+	--bp-pink: #ff6b9a;
+	--bp-toxic: #e2d36b;
+	color-scheme: dark;
+}
+html,
+body,
+#root {
+	height: 100%;
+	margin: 0;
+}
+body {
+	background: var(--bp-ink);
+	color: var(--bp-sterile);
+	font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+::selection {
+	background: var(--bp-bio);
+	color: var(--bp-ink);
+}
+.app-shell {
+	display: grid;
+	grid-template-rows: minmax(0, 1fr) auto;
+	height: 100%;
+}
+.ve {
+	--ve-theme-bg: var(--bp-ink);
+	--ve-theme-surface: var(--bp-lab);
+	--ve-theme-raised: var(--bp-membrane);
+	--ve-theme-ink: var(--bp-sterile);
+	--ve-theme-muted: var(--bp-muted);
+	--ve-theme-line: var(--bp-tissue);
+	--ve-theme-accent: var(--bp-bio);
+	--ve-theme-accent-ink: var(--bp-ink);
+	--ve-theme-warn: var(--bp-toxic);
+	--ve-theme-error: #ff6577;
+	--ve-theme-mono: 'FiraCode Nerd Font Mono', 'Fira Code', ui-monospace, 'SFMono-Regular', monospace;
+	--ve-theme-map-bg: var(--bp-ink);
+	--ve-theme-map-ink: var(--bp-sterile);
+	--ve-theme-map-muted: var(--bp-boundary);
+	--ve-theme-map-cut: var(--bp-pink);
+	--ve-theme-map-selection: rgb(164 230 109 / 0.16);
+}
+/* The map as a specimen under the microscope: reticle grid, vignette, glowing arcs. */
+.ve-map {
+	background:
+		radial-gradient(circle at center, transparent 42%, var(--bp-void) 96%),
+		linear-gradient(var(--bp-tissue) 1px, transparent 1px) 0 0 / 100% 1.5rem,
+		linear-gradient(90deg, var(--bp-tissue) 1px, transparent 1px) 0 0 / 1.5rem 100%,
+		var(--bp-ink) !important;
+}
+.ve-map .la-vz-annotation {
+	filter: drop-shadow(0 0 6px currentColor);
+}
+.ve-map .la-vz-annotation[fill='#5ed9d1'] {
+	color: rgb(94 217 209 / 0.55);
+}
+.ve-map .la-vz-annotation[fill='#a4e66d'] {
+	color: rgb(164 230 109 / 0.55);
+}
+.ve-map .la-vz-circular-label[id$='-fwd'],
+.ve-map .la-vz-circular-label[id$='-rev'] {
+	fill: var(--bp-pink) !important;
+}
+.app-brand {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	padding-right: 0.6rem;
+	border-right: 1px solid var(--bp-tissue);
+}
+.app-brand strong {
+	font-weight: 700;
+	letter-spacing: -0.01em;
+}
+.app-tagline {
+	color: var(--bp-muted);
+	font-size: 0.8rem;
+}
+.app-lang {
+	display: inline-flex;
+	margin-left: 0.4rem;
+	border: 1px solid var(--bp-tissue);
+	border-radius: 6px;
+	overflow: hidden;
+}
+.app-lang button {
+	min-width: 2.4rem;
+	min-height: 2rem;
+	border: 0;
+	background: transparent;
+	color: var(--bp-muted);
+	font: inherit;
+	font-size: 0.72rem;
+	font-weight: 700;
+	cursor: pointer;
+}
+.app-lang button[aria-pressed='true'] {
+	background: var(--bp-membrane);
+	color: var(--bp-bio);
+}
+.app-footer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.3rem 0.7rem;
+	padding: 0.45rem 1rem;
+	border-top: 1px solid var(--bp-tissue);
+	background: var(--bp-void);
+	color: var(--bp-muted);
+	font-size: 0.72rem;
+}
+.app-footer a {
+	color: var(--bp-bone);
+	text-underline-offset: 0.2em;
+}
+.app-footer a:hover {
+	color: var(--bp-bio);
+}
+@media (max-width: 1100px) {
+	/* On smaller screens the page scrolls instead of fitting the viewport. */
+	.app-shell {
+		height: auto;
+		min-height: 100%;
+	}
+	.ve--app {
+		height: auto;
+	}
+}

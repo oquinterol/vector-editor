@@ -1,6 +1,6 @@
 {
 	"name": "@oquinterol/vector-editor",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"description": "In-browser cloning simulator: choose commercial or custom restriction enzymes, digest and ligate, and get a live FASTA and plasmid map.",
 	"license": "MIT",
 	"author": "Oscar Alexis Quintero López (https://oquinterol.com)",
@@ -8,7 +8,7 @@
 		"type": "git",
 		"url": "git+https://github.com/oquinterol/vector-editor.git"
 	},
-	"homepage": "https://oquinterol.com/en/tools/vector-editor/",
+	"homepage": "https://vector-editor.oquinterol.com/",
 	"keywords": [
 		"plasmid",
 		"cloning",
@@ -43,7 +43,9 @@
 		"build": "tsup && cp src/ui/styles.css dist/styles.css",
 		"test": "vitest run",
 		"typecheck": "tsc --noEmit",
-		"enzymes": "node scripts/build-enzymes.mjs"
+		"enzymes": "node scripts/build-enzymes.mjs",
+		"app:dev": "vite",
+		"app:build": "vite build"
 	},
 	"peerDependencies": {
 		"react": "^18.0.0 || ^19.0.0",
@@ -56,10 +58,12 @@
 	"devDependencies": {
 		"@types/react": "^19.3.0",
 		"@types/react-dom": "^19.3.0",
+		"@vitejs/plugin-react": "^5.2.0",
 		"react": "^19.3.0",
 		"react-dom": "^19.3.0",
 		"tsup": "^8.5.1",
 		"typescript": "~5.9.3",
+		"vite": "^7.3.6",
 		"vitest": "^5.0.3"
 	},
 	"packageManager": "pnpm@11.2.2"

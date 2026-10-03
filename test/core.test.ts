@@ -16,6 +16,7 @@ import {
 	rightEnd,
 	topStrand,
 	toFasta,
+	toGenBank,
 	type Enzyme,
 	type Fragment
 } from '../src/core'
@@ -162,5 +163,29 @@ describe('FASTA', () => {
 	it('wraps sequences at 70 columns', () => {
 		const fasta = toFasta('p', 'A'.repeat(150), 'circular')
 		expect(fasta.split('\n')).toEqual(['>p circular', 'A'.repeat(70), 'A'.repeat(70), 'A'.repeat(10), ''])
+	})
+})
+
+describe('GenBank', () => {
+	const gb = toGenBank(
+		'my plasmid',
+		'ACGT'.repeat(20),
+		[
+			{ type: 'misc_feature', start: 0, end: 70, strand: 1, label: 'backbone', note: 'vector' },
+			{ type: 'misc_feature', start: 70, end: 10, strand: -1, label: 'insert' }
+		],
+		{ date: new Date(Date.UTC(2026, 9, 3)) }
+	)
+	const lines = gb.split('\n')
+	it('writes a LOCUS line with length, topology and date', () => {
+		expect(lines[0]).toBe('LOCUS       my_plasmid                80 bp    DNA     circular SYN 03-OCT-2026')
+	})
+	it('writes features, including complement and origin-spanning joins', () => {
+		expect(gb).toContain('     misc_feature    1..70\n                     /label="backbone"\n                     /note="vector"')
+		expect(gb).toContain('     misc_feature    complement(join(71..80,1..10))')
+	})
+	it('writes ORIGIN in numbered blocks of ten and ends with //', () => {
+		expect(gb).toContain('        1 acgtacgtac gtacgtacgt acgtacgtac gtacgtacgt acgtacgtac gtacgtacgt\n       61 acgtacgtac gtacgtacgt')
+		expect(lines.at(-2)).toBe('//')
 	})
 })
