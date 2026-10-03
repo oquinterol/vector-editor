@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import type { Site } from '../core'
 
 export interface Region {
@@ -23,6 +23,7 @@ interface Props {
 	range: SeqRange | null
 	rangeSource: RangeSource | null
 	onRange: (range: SeqRange) => void
+	/** Fixed bases per line; by default it fits the panel width (multiples of 10). */
 	width?: number
 	label: string
 }
@@ -34,8 +35,45 @@ export function inRange(range: SeqRange, i: number): boolean {
 }
 
 /** The FASTA of the plasmid with every base coloured by what it belongs to. */
-export function FastaView({ header, seq, regions, sites, range, rangeSource, onRange, width = 60, label }: Props) {
+export function FastaView({
+	header,
+	seq,
+	regions,
+	sites,
+	range,
+	rangeSource,
+	onRange,
+	width: fixedWidth,
+	label
+}: Props) {
 	const box = useRef<HTMLDivElement>(null)
+	const [fitWidth, setFitWidth] = useState(60)
+	const width = fixedWidth ?? fitWidth
+
+	// Fit whole blocks of ten bases to the panel, so lines never scroll sideways.
+	useEffect(() => {
+		const element = box.current
+		if (!element || fixedWidth || typeof ResizeObserver === 'undefined') return
+		const probe = document.createElement('span')
+		probe.textContent = 'ACGTACGTAC'
+		probe.style.cssText = 'position:absolute;visibility:hidden;white-space:pre'
+		element.appendChild(probe)
+		const measure = () => {
+			const charWidth = probe.getBoundingClientRect().width / 10
+			const style = getComputedStyle(element)
+			const inner = element.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)
+			const gutter = charWidth * 8 // position column + gap
+			const blocks = Math.floor((inner - gutter) / (charWidth * 10))
+			if (charWidth > 0) setFitWidth(Math.min(80, Math.max(20, blocks * 10)))
+		}
+		measure()
+		const observer = new ResizeObserver(measure)
+		observer.observe(element)
+		return () => {
+			observer.disconnect()
+			probe.remove()
+		}
+	}, [fixedWidth])
 
 	// Per-base region kind and recognition-site mask, recomputed only when the plasmid changes.
 	const { kind, site } = useMemo(() => {
