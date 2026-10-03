@@ -2,6 +2,8 @@
 	// Static app served by a Cloudflare Worker at vector-editor.oquinterol.com.
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "vector-editor",
+	// Oaql97@gmail.com account (owner of the oquinterol.com zone).
+	"account_id": "1334cd1c58712e97ee632f6507e4c659",
 	"compatibility_date": "2026-10-01",
 	"assets": {
 		"directory": "./app-dist",

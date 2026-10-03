@@ -56,7 +56,7 @@ pnpm test        # núcleo con pruebas / tested core (vitest)
 pnpm build       # dist/
 pnpm enzymes     # regenerar el catálogo desde REBASE / rebuild the catalogue from REBASE
 pnpm app:dev     # app independiente / standalone app (vector-editor.oquinterol.com)
-pnpm app:deploy  # Cloudflare Worker (wrangler)
+pnpm app:deploy  # Cloudflare Worker (wrangler): vector-editor.oquinterol.com
 ```
 
 ## Se apoya en / Builds on
