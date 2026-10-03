@@ -16,8 +16,15 @@
 	--ve-map-cut: var(--ve-theme-map-cut, #73777d);
 	--ve-map-selection: var(--ve-theme-map-selection, rgb(222 246 255 / 0.9));
 	display: grid;
+	/* minmax(0, …) lets wide content (FASTA lines) scroll inside instead of widening the page. */
+	grid-template-columns: minmax(0, 1fr);
 	gap: 1rem;
 	color: var(--ve-ink);
+}
+.ve > *,
+.ve-result-grid > *,
+.ve-inputs > * {
+	min-width: 0;
 }
 .ve *,
 .ve *::before,
@@ -485,7 +492,7 @@
 	.ve-filters,
 	.ve-custom-form,
 	.ve-result-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 	}
 	.ve-map {
 		height: 22rem;
