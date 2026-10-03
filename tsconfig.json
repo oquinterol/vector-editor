@@ -10,8 +10,16 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"declaration": true,
-		"lib": ["ES2022", "DOM", "DOM.Iterable"],
+		"lib": [
+			"ES2022",
+			"DOM",
+			"DOM.Iterable"
+		],
 		"types": []
 	},
-	"include": ["src", "test"]
+	"include": [
+		"src",
+		"test",
+		"app"
+	]
 }

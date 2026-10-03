@@ -1,39 +1,57 @@
-/* Vector editor. Theme through these custom properties; defaults are neutral light. */
+/*
+ * Vector editor. Theme through the --ve-theme-* custom properties; the defaults
+ * are a neutral light theme. The map and the FASTA are the centre of the layout;
+ * construction controls live in a compact side panel.
+ */
 .ve {
 	--ve-bg: var(--ve-theme-bg, #ffffff);
 	--ve-surface: var(--ve-theme-surface, #f6f7f6);
+	--ve-raised: var(--ve-theme-raised, #eef0ee);
 	--ve-ink: var(--ve-theme-ink, #1d2421);
 	--ve-muted: var(--ve-theme-muted, #5f6b65);
 	--ve-line: var(--ve-theme-line, #d6ddd8);
 	--ve-accent: var(--ve-theme-accent, #215f59);
+	--ve-accent-ink: var(--ve-theme-accent-ink, #ffffff);
 	--ve-warn: var(--ve-theme-warn, #8a6d00);
 	--ve-error: var(--ve-theme-error, #b3261e);
 	--ve-mono: var(--ve-theme-mono, ui-monospace, 'SFMono-Regular', monospace);
-	/* Circular map palette; set these for a dark map. */
 	--ve-map-bg: var(--ve-theme-map-bg, #ffffff);
 	--ve-map-ink: var(--ve-theme-map-ink, #2a2a2a);
 	--ve-map-muted: var(--ve-theme-map-muted, #73777d);
 	--ve-map-cut: var(--ve-theme-map-cut, #73777d);
 	--ve-map-selection: var(--ve-theme-map-selection, rgb(222 246 255 / 0.9));
+	--ve-stage-height: 40rem;
 	display: grid;
 	/* minmax(0, …) lets wide content (FASTA lines) scroll inside instead of widening the page. */
 	grid-template-columns: minmax(0, 1fr);
-	gap: 1rem;
+	grid-template-rows: auto minmax(0, 1fr);
 	color: var(--ve-ink);
+	background: var(--ve-surface);
+	border: 1px solid var(--ve-line);
+	border-radius: 12px;
+	overflow: hidden;
+	font-size: 0.9rem;
 }
-.ve > *,
-.ve-result-grid > *,
-.ve-inputs > * {
-	min-width: 0;
+.ve:focus {
+	outline: none;
 }
 .ve *,
 .ve *::before,
 .ve *::after {
 	box-sizing: border-box;
 }
+.ve--app {
+	height: 100%;
+	border: 0;
+	border-radius: 0;
+}
 .ve h3 {
-	margin: 0 0 0.75rem;
-	font-size: 1.1rem;
+	margin: 0;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--ve-muted);
 }
 .ve-muted {
 	color: var(--ve-muted);
@@ -46,63 +64,73 @@
 	overflow: hidden;
 	clip-path: inset(50%);
 }
-.ve-panel {
-	padding: 1rem 1.1rem;
+.ve kbd {
+	padding: 0 0.3rem;
 	border: 1px solid var(--ve-line);
-	border-radius: 10px;
-	background: var(--ve-surface);
-}
-.ve-inputs {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-	gap: 1rem;
-}
-.ve-input-head {
-	display: flex;
-	justify-content: space-between;
-	gap: 1rem;
-	margin-bottom: 0.4rem;
-	font-weight: 650;
-}
-.ve textarea,
-.ve input[type='search'],
-.ve input:not([type]),
-.ve select {
-	width: 100%;
-	padding: 0.55rem 0.7rem;
-	border: 1px solid var(--ve-line);
-	border-radius: 6px;
-	background: var(--ve-bg);
-	color: var(--ve-ink);
-	font: inherit;
-}
-.ve textarea {
-	min-height: 9rem;
-	resize: vertical;
+	border-bottom-width: 2px;
+	border-radius: 4px;
 	font-family: var(--ve-mono);
-	font-size: 0.78rem;
-	line-height: 1.45;
-	word-break: break-all;
+	font-size: 0.7rem;
+	color: var(--ve-muted);
 }
-.ve-input-actions {
+.ve :focus-visible {
+	outline: 2px solid var(--ve-accent);
+	outline-offset: 2px;
+}
+
+/* Toolbar: what you built, and what you can do with it. */
+.ve-toolbar {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.5rem;
-	margin-top: 0.5rem;
+	align-items: center;
+	gap: 0.6rem 1.25rem;
+	padding: 0.6rem 1rem;
+	border-bottom: 1px solid var(--ve-line);
+	background: var(--ve-bg);
+}
+.ve-product {
+	display: flex;
+	flex: 1;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.2rem 0.8rem;
+	min-width: 0;
+}
+.ve-product strong {
+	overflow: hidden;
+	max-width: 32ch;
+	font-family: var(--ve-mono);
+	font-size: 0.95rem;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.ve-warn-badge {
+	padding: 0.1rem 0.55rem;
+	border: 1px solid var(--ve-warn);
+	border-radius: 999px;
+	color: var(--ve-warn);
+	font-size: 0.75rem;
+	text-decoration: none;
+}
+.ve-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
 }
 .ve-button {
 	display: inline-flex;
 	align-items: center;
-	gap: 0.4rem;
-	min-height: 2.75rem;
-	padding: 0 0.9rem;
+	gap: 0.45rem;
+	min-height: 2.5rem;
+	padding: 0 0.85rem;
 	border: 1px solid var(--ve-line);
-	border-radius: 6px;
-	background: var(--ve-bg);
+	border-radius: 7px;
+	background: var(--ve-surface);
 	color: var(--ve-ink);
 	font: inherit;
-	font-size: 0.85rem;
+	font-size: 0.82rem;
 	cursor: pointer;
+	transition: border-color 0.15s ease-out;
 }
 .ve-button:hover {
 	border-color: var(--ve-accent);
@@ -111,88 +139,153 @@
 	opacity: 0.5;
 	cursor: not-allowed;
 }
-.ve-button input[type='file'] {
+.ve-primary {
+	border-color: var(--ve-accent);
+	background: var(--ve-accent);
+	color: var(--ve-accent-ink);
+}
+.ve-primary kbd {
+	border-color: currentColor;
+	color: inherit;
+	opacity: 0.75;
+}
+.ve-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	min-height: 2rem;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--ve-accent);
+	font: inherit;
+	font-size: 0.82rem;
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+	cursor: pointer;
+}
+
+/* Body: compact construction panel + large stage. */
+.ve-body {
+	display: grid;
+	grid-template-columns: minmax(17rem, 21rem) minmax(0, 1fr);
+	min-height: 0;
+}
+.ve-sidebar {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	max-height: calc(var(--ve-stage-height) + 3.5rem);
+	overflow: auto;
+	border-right: 1px solid var(--ve-line);
+	background: var(--ve-surface);
+}
+.ve--app .ve-sidebar {
+	max-height: none;
+}
+.ve-section {
+	display: grid;
+	gap: 0.6rem;
+	padding: 0.9rem 1rem;
+	border-bottom: 1px solid var(--ve-line);
+}
+.ve-section-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+}
+
+/* Sequence cards. */
+.ve-card {
+	display: grid;
+	gap: 0.35rem;
+	padding: 0.6rem 0.7rem;
+	border: 1px solid var(--ve-line);
+	border-radius: 8px;
+	background: var(--ve-bg);
+	transition: border-color 0.15s ease-out;
+}
+.ve-card[data-dragging='true'] {
+	border-style: dashed;
+	border-color: var(--ve-accent);
+}
+.ve-card-head {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	align-items: baseline;
+	gap: 0 0.6rem;
+}
+.ve-card-label {
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--ve-muted);
+}
+.ve-card-name {
+	overflow: hidden;
+	font-family: var(--ve-mono);
+	font-weight: 600;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.ve-card-head .ve-muted {
+	grid-column: 2;
+}
+.ve-card textarea {
+	width: 100%;
+	min-height: 7rem;
+	padding: 0.5rem 0.6rem;
+	border: 1px solid var(--ve-line);
+	border-radius: 6px;
+	background: var(--ve-surface);
+	color: var(--ve-ink);
+	font-family: var(--ve-mono);
+	font-size: 0.72rem;
+	line-height: 1.45;
+	resize: vertical;
+	word-break: break-all;
+}
+.ve-card-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0 0.9rem;
+}
+.ve-file {
+	position: relative;
+}
+.ve-file input {
 	position: absolute;
 	width: 1px;
 	height: 1px;
 	opacity: 0;
 }
-.ve-button:focus-within {
+.ve-file:focus-within {
 	outline: 2px solid var(--ve-accent);
 	outline-offset: 2px;
 }
-.ve-example {
-	justify-self: start;
+.ve-drop-hint {
+	font-size: 0.75rem;
 }
-.ve-selected {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: 0.4rem;
-	margin: 0 0 0.75rem;
-}
-.ve-chip {
-	min-height: 2.25rem;
-	padding: 0 0.7rem;
-	border: 1px solid var(--ve-accent);
-	border-radius: 999px;
-	background: transparent;
-	color: var(--ve-accent);
-	font: inherit;
-	font-family: var(--ve-mono);
-	font-size: 0.8rem;
-	cursor: pointer;
-}
-.ve-filters {
-	display: grid;
-	grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
-	gap: 0.6rem;
-	align-items: end;
-}
-.ve-filters label {
-	display: grid;
-	gap: 0.25rem;
-	font-size: 0.78rem;
-	color: var(--ve-muted);
-}
-.ve-fragment-list label {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: 0.5rem;
-	min-height: 2.75rem;
-	padding: 0.3rem 0.6rem;
-	border: 1px solid transparent;
-	border-radius: 6px;
-	cursor: pointer;
-}
-.ve-fragment-list label:hover {
-	border-color: var(--ve-line);
-}
-.ve-fragment-list label.is-on {
-	border-color: var(--ve-accent);
-}
-.ve-fragment-list input,
-.ve-orientation input {
-	accent-color: var(--ve-accent);
-}
+
 /* Enzyme search: a single input with a dropdown, instead of a long list. */
 .ve-combobox {
 	position: relative;
 }
-.ve-combobox input {
+.ve-combobox input,
+.ve-filters select,
+.ve-custom-form input {
 	width: 100%;
-	min-height: 2.75rem;
-	padding: 0.55rem 0.7rem;
+	min-height: 2.5rem;
+	padding: 0.45rem 0.65rem;
 	border: 1px solid var(--ve-line);
-	border-radius: 6px;
+	border-radius: 7px;
 	background: var(--ve-bg);
 	color: var(--ve-ink);
 	font: inherit;
-}
-.ve-combobox input:focus {
-	outline: 2px solid var(--ve-accent);
-	outline-offset: 1px;
+	font-size: 0.85rem;
 }
 .ve-listbox {
 	position: absolute;
@@ -200,7 +293,7 @@
 	top: calc(100% + 4px);
 	left: 0;
 	right: 0;
-	max-height: 18rem;
+	max-height: 20rem;
 	margin: 0;
 	padding: 0.3rem;
 	overflow: auto;
@@ -208,20 +301,19 @@
 	border: 1px solid var(--ve-line);
 	border-radius: 8px;
 	background: var(--ve-bg);
-	box-shadow: 0 12px 30px -12px rgb(0 0 0 / 0.5);
+	box-shadow: 0 14px 34px -14px rgb(0 0 0 / 0.55);
 }
 .ve-listbox li {
 	display: flex;
 	align-items: center;
-	gap: 0.6rem;
-	min-height: 2.5rem;
-	padding: 0.2rem 0.6rem;
+	gap: 0.55rem;
+	min-height: 2.35rem;
+	padding: 0.15rem 0.55rem;
 	border-radius: 5px;
 	cursor: pointer;
 }
 .ve-listbox li.is-active {
-	background: var(--ve-surface);
-	outline: 1px solid var(--ve-line);
+	background: var(--ve-raised);
 }
 .ve-listbox li[aria-selected='true'] strong {
 	color: var(--ve-accent);
@@ -229,10 +321,12 @@
 .ve-listbox code {
 	color: var(--ve-muted);
 	font-family: var(--ve-mono);
-	font-size: 0.78rem;
+	font-size: 0.75rem;
 }
 .ve-listbox .ve-muted {
 	margin-left: auto;
+	font-family: var(--ve-mono);
+	white-space: nowrap;
 }
 .ve-check {
 	width: 1ch;
@@ -248,28 +342,66 @@
 	font-size: 0.7rem;
 	color: var(--ve-muted);
 }
-.ve-custom {
-	margin-top: 0.75rem;
+.ve-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.35rem;
+}
+.ve-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	min-height: 2rem;
+	padding: 0 0.6rem;
+	border: 1px solid var(--ve-accent);
+	border-radius: 999px;
+	background: transparent;
+	color: var(--ve-ink);
+	font: inherit;
+	font-size: 0.8rem;
+	font-weight: 600;
+	cursor: pointer;
+}
+.ve-chip code {
+	font-family: var(--ve-mono);
+	font-size: 0.72rem;
+	font-weight: 400;
+	color: var(--ve-muted);
+}
+.ve-filters {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: 0.5rem;
+}
+.ve-filters label {
+	display: grid;
+	gap: 0.2rem;
+	font-size: 0.72rem;
+	color: var(--ve-muted);
 }
 .ve-custom summary {
-	min-height: 2.75rem;
 	display: flex;
 	align-items: center;
+	min-height: 2rem;
+	font-size: 0.82rem;
 	cursor: pointer;
-	font-weight: 650;
 }
 .ve-custom-form {
 	display: grid;
-	grid-template-columns: 1fr 1.4fr auto;
-	gap: 0.5rem;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) auto;
+	gap: 0.4rem;
+	margin-top: 0.4rem;
 }
 .ve-custom-form input:nth-child(2) {
 	font-family: var(--ve-mono);
 }
+.ve-custom p {
+	margin: 0.4rem 0 0;
+}
 .ve-custom-list {
 	display: grid;
-	gap: 0.3rem;
-	margin: 0.5rem 0 0;
+	gap: 0.2rem;
+	margin: 0.4rem 0 0;
 	padding: 0;
 	list-style: none;
 }
@@ -282,59 +414,119 @@
 .ve-error {
 	color: var(--ve-error);
 }
-.ve-fragments {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-	gap: 1rem;
-}
+
+/* Fragments. */
 .ve fieldset {
+	min-width: 0;
 	margin: 0;
 	padding: 0;
 	border: 0;
-	min-width: 0;
 }
 .ve legend {
-	margin-bottom: 0.4rem;
+	margin-bottom: 0.2rem;
+	font-size: 0.78rem;
 	font-weight: 650;
+}
+.ve-fragment-list label {
+	display: grid;
+	grid-template-columns: auto 5ch minmax(0, 1fr);
+	align-items: center;
+	gap: 0.5rem;
+	min-height: 2.25rem;
+	padding: 0.15rem 0.45rem;
+	border: 1px solid transparent;
+	border-radius: 6px;
+	cursor: pointer;
+}
+.ve-fragment-list label:hover {
+	border-color: var(--ve-line);
+}
+.ve-fragment-list label.is-on {
+	border-color: var(--ve-accent);
+	background: var(--ve-bg);
+}
+.ve-fragment-list strong {
+	font-family: var(--ve-mono);
+	font-size: 0.8rem;
+	text-align: right;
+}
+.ve-fragment-list .ve-muted {
+	overflow: hidden;
+	font-size: 0.75rem;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.ve-fragment-list input,
+.ve-orientation input {
+	accent-color: var(--ve-accent);
 }
 .ve-orientation {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem;
-	margin-top: 0.75rem !important;
 }
 .ve-orientation label {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.4rem;
-	min-height: 2.75rem;
+	min-height: 2.25rem;
 }
 .ve-warnings {
 	display: grid;
-	gap: 0.3rem;
-	margin: 0.75rem 0 0;
+	gap: 0.35rem;
+	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 .ve-warnings li {
-	padding: 0.4rem 0.7rem;
+	padding: 0.35rem 0.6rem;
 	border-left: 3px solid var(--ve-warn);
-	color: var(--ve-ink);
-	font-size: 0.88rem;
+	background: var(--ve-bg);
+	font-size: 0.82rem;
 }
-.ve-result-grid {
+.ve-footnote {
+	margin: 0;
+	padding: 0.9rem 1rem;
+	font-size: 0.72rem;
+}
+
+/* Stage: the map and its FASTA, side by side, as large as the layout allows. */
+.ve-workspace {
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-	gap: 1rem;
+	grid-template-rows: minmax(0, 1fr) auto;
+	min-width: 0;
+	min-height: 0;
+	background: var(--ve-bg);
+}
+.ve-stage {
+	display: grid;
+	grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+	height: var(--ve-stage-height);
+	min-height: 0;
+}
+.ve--app .ve-stage {
+	height: auto;
 }
 .ve-map {
-	min-height: 26rem;
-	height: 26rem;
-	border: 1px solid var(--ve-line);
-	border-radius: 8px;
+	position: relative;
+	min-height: 0;
+	border-right: 1px solid var(--ve-line);
 	background: var(--ve-map-bg);
 	overflow: hidden;
 }
+.ve-fasta {
+	display: flex;
+	min-width: 0;
+	min-height: 0;
+}
+.ve-statusbar {
+	display: grid;
+	gap: 0.4rem;
+	padding: 0.6rem 1rem;
+	border-top: 1px solid var(--ve-line);
+	background: var(--ve-surface);
+}
+
 /* SeqViz paints with inline styles, so the map theme needs !important. */
 .ve-map .la-vz-viewer-circular text,
 .ve-map .la-vz-viewer-circular tspan {
@@ -364,38 +556,31 @@
 .ve-map text:has(> .la-vz-annotation-label) {
 	fill: #0b0f0d !important;
 }
-.ve-fasta {
-	display: flex;
-	flex-direction: column;
-}
-.ve-fasta .ve-input-actions {
-	margin: 0 0 0.5rem;
-}
+
 /* Coloured FASTA linked to the map. */
 .ve-fasta-view {
+	position: relative;
 	flex: 1;
-	min-height: 20rem;
-	max-height: 26rem;
+	min-width: 0;
+	min-height: 0;
 	overflow: auto;
-	padding: 0.6rem 0.7rem;
-	border: 1px solid var(--ve-line);
-	border-radius: 6px;
+	padding: 0.75rem 0.9rem;
 	background: var(--ve-bg);
 	font-family: var(--ve-mono);
-	font-size: 0.72rem;
-	line-height: 1.6;
-	position: relative;
+	font-size: 0.74rem;
+	line-height: 1.65;
 }
 .ve-fasta-view:focus-visible {
-	outline: 2px solid var(--ve-accent);
+	outline-offset: -2px;
 }
 .ve-fasta-header {
+	margin-bottom: 0.3rem;
 	color: var(--ve-muted);
 	white-space: pre;
 }
 .ve-line {
 	display: flex;
-	gap: 0.8rem;
+	gap: 0.9rem;
 	white-space: pre;
 }
 .ve-pos {
@@ -403,9 +588,7 @@
 	color: var(--ve-muted);
 	text-align: right;
 	user-select: none;
-}
-.ve-bases {
-	letter-spacing: 0.02em;
+	opacity: 0.7;
 }
 .ve-bases .is-vector {
 	color: var(--ve-vector);
@@ -425,55 +608,37 @@
 .ve-bases ::selection {
 	background: color-mix(in srgb, var(--ve-accent) 35%, transparent);
 }
-.ve-selection {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: 0.3rem 1rem;
-	min-height: 2.75rem;
-	margin: 0.4rem 0 0;
-	color: var(--ve-muted);
-	font-size: 0.82rem;
-}
-.ve-link {
-	min-height: 2.25rem;
-	padding: 0;
-	border: 0;
-	background: none;
-	color: var(--ve-accent);
-	font: inherit;
-	text-decoration: underline;
-	cursor: pointer;
-}
+
+/* Legend and selection. */
 .ve-legend {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.4rem;
-	margin: 0.9rem 0 0;
+	gap: 0.35rem;
+	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 .ve-legend button {
 	display: inline-flex;
 	align-items: center;
-	gap: 0.45rem;
-	min-height: 2.25rem;
-	padding: 0 0.7rem;
+	gap: 0.4rem;
+	min-height: 2rem;
+	padding: 0 0.65rem;
 	border: 1px solid var(--ve-line);
 	border-radius: 999px;
 	background: var(--ve-bg);
 	color: var(--ve-ink);
 	font: inherit;
 	font-family: var(--ve-mono);
-	font-size: 0.75rem;
+	font-size: 0.74rem;
 	cursor: pointer;
 }
 .ve-legend button[aria-pressed='true'] {
 	border-color: var(--ve-accent);
 }
 .ve-swatch {
-	width: 0.7rem;
-	height: 0.7rem;
+	width: 0.65rem;
+	height: 0.65rem;
 	border-radius: 50%;
 }
 [data-kind='vector'] .ve-swatch {
@@ -485,17 +650,44 @@
 [data-kind='site'] .ve-swatch {
 	background: var(--ve-site);
 }
-.ve-footnote {
+.ve-selection {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.2rem 1rem;
+	min-height: 2rem;
 	margin: 0;
+	font-family: var(--ve-mono);
+	font-size: 0.78rem;
 }
-@media (max-width: 760px) {
-	.ve-filters,
-	.ve-custom-form,
-	.ve-result-grid {
+
+@media (max-width: 1100px) {
+	.ve-stage {
 		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: 26rem minmax(20rem, 1fr);
+		height: auto;
 	}
 	.ve-map {
-		height: 22rem;
-		min-height: 22rem;
+		border-right: 0;
+		border-bottom: 1px solid var(--ve-line);
+	}
+}
+@media (max-width: 760px) {
+	.ve-body {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.ve-sidebar {
+		max-height: none;
+		border-right: 0;
+		border-bottom: 1px solid var(--ve-line);
+	}
+	.ve-stage {
+		grid-template-rows: 22rem 24rem;
+	}
+	.ve-actions {
+		width: 100%;
+	}
+	.ve-custom-form {
+		grid-template-columns: minmax(0, 1fr);
 	}
 }
