@@ -43,6 +43,12 @@ export interface Labels {
 	download: string
 	map: string
 	bp: string
+	noMatches: string
+	legend: string
+	selection: (from: number, to: number, length: number) => string
+	selectionHint: string
+	copySelection: string
+	clearSelection: string
 	warnings: {
 		invalid: (chars: string) => string
 		noVectorCuts: string
@@ -67,7 +73,7 @@ export const labelsEs: Labels = {
 	circular: 'Circular',
 	linear: 'Lineal',
 	enzymes: 'Enzimas',
-	search: 'Buscar enzima o sitio',
+	search: 'Buscar enzima o sitio (p. ej. EcoRI, GAATTC)',
 	supplier: 'Proveedor',
 	anySupplier: 'Cualquiera',
 	show: 'Mostrar',
@@ -102,6 +108,13 @@ export const labelsEs: Labels = {
 	download: 'Descargar .fasta',
 	map: 'Mapa',
 	bp: 'pb',
+	noMatches: 'Sin coincidencias',
+	legend: 'Regiones y sitios',
+	selection: (from, to, length) => `Selección ${from}–${to} · ${length} pb`,
+	selectionHint:
+		'Selecciona bases en el FASTA, haz clic en el mapa o en la leyenda para ver dónde está cada región.',
+	copySelection: 'Copiar selección',
+	clearSelection: 'Quitar selección',
 	warnings: {
 		invalid: (chars) => `Se ignoraron caracteres no válidos: ${chars}`,
 		noVectorCuts: 'Las enzimas elegidas no cortan el vector.',
@@ -128,7 +141,7 @@ export const labelsEn: Labels = {
 	circular: 'Circular',
 	linear: 'Linear',
 	enzymes: 'Enzymes',
-	search: 'Search enzyme or site',
+	search: 'Search enzyme or site (e.g. EcoRI, GAATTC)',
 	supplier: 'Supplier',
 	anySupplier: 'Any',
 	show: 'Show',
@@ -163,6 +176,12 @@ export const labelsEn: Labels = {
 	download: 'Download .fasta',
 	map: 'Map',
 	bp: 'bp',
+	noMatches: 'No matches',
+	legend: 'Regions and sites',
+	selection: (from, to, length) => `Selection ${from}–${to} · ${length} bp`,
+	selectionHint: 'Select bases in the FASTA, or click the map or the legend, to see where each region lies.',
+	copySelection: 'Copy selection',
+	clearSelection: 'Clear selection',
 	warnings: {
 		invalid: (chars) => `Ignored invalid characters: ${chars}`,
 		noVectorCuts: 'The selected enzymes do not cut the vector.',

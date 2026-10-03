@@ -4,6 +4,7 @@ import {
 	digest,
 	findAllCuts,
 	findCuts,
+	findSites,
 	formatSite,
 	fragmentLength,
 	leftEnd,
@@ -72,6 +73,17 @@ describe('site search', () => {
 			{ enzyme: 'EcoRI', top: 12, bottom: 16, strand: 1 }
 		])
 		expect(findCuts(circle, EcoRI, false)).toEqual([])
+	})
+	it('locates recognition sites, including across the origin', () => {
+		expect(findSites('AAAGAATTCAAA', EcoRI, false)).toEqual([
+			{ enzyme: 'EcoRI', start: 3, length: 6, strand: 1 }
+		])
+		expect(findSites('ATTCCCCCCCCGA', EcoRI, true)).toEqual([
+			{ enzyme: 'EcoRI', start: 11, length: 6, strand: 1 }
+		])
+		expect(findSites('AAAAGAGACCAA', enzyme('BsaI'), false)).toEqual([
+			{ enzyme: 'BsaI', start: 4, length: 6, strand: -1 }
+		])
 	})
 	it('reads ambiguous IUPAC sites', () => {
 		const custom = parseEnzyme('Ambi', 'GR^CGYC')

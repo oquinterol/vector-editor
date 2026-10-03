@@ -11,6 +11,14 @@ export interface Enzyme {
 	custom?: boolean
 }
 
+/** A recognition site occurrence: `start` is 0-based on the top strand; may wrap a circle. */
+export interface Site {
+	enzyme: string
+	start: number
+	length: number
+	strand: 1 | -1
+}
+
 /** A double-strand break. Positions are boundaries between bases (0…length). */
 export interface Cut {
 	enzyme: string

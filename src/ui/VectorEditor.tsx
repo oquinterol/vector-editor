@@ -6,6 +6,7 @@ import {
 	digest,
 	findAllCuts,
 	findCuts,
+	findSites,
 	formatSite,
 	fragmentLength,
 	leftEnd,
@@ -21,6 +22,8 @@ import {
 	type Fragment
 } from '../core'
 import { exampleEnzymes, exampleInsert, exampleVector } from '../data/examples'
+import { EnzymeCombobox } from './EnzymeCombobox'
+import { FastaView, type RangeSource, type Region, type SeqRange } from './FastaView'
 import { labelsEn, type Labels } from './labels'
 
 export interface VectorEditorProps {
@@ -126,7 +129,8 @@ export function VectorEditor({
 	const [insertText, setInsertText] = useState(() => fasta(exampleInsert.name, exampleInsert.seq))
 	const [selected, setSelected] = useState<string[]>(exampleEnzymes)
 	const [custom, setCustom] = useState<Enzyme[]>([])
-	const [query, setQuery] = useState('')
+	const [range, setRange] = useState<SeqRange | null>(null)
+	const [rangeSource, setRangeSource] = useState<RangeSource | null>(null)
 	const [supplier, setSupplier] = useState('')
 	const [filter, setFilter] = useState<Filter>('both')
 	const [vectorChoice, setVectorChoice] = useState<number | null>(null)
@@ -169,19 +173,17 @@ export function VectorEditor({
 		return map
 	}, [allEnzymes, vector.seq, insert.seq])
 
-	const visible = useMemo(() => {
-		const q = query.trim().toUpperCase()
-		return allEnzymes
-			.filter((enzyme) => {
+	// Enzymes offered in the search box, narrowed by the cut filter and supplier.
+	const options = useMemo(
+		() =>
+			allEnzymes.filter((enzyme) => {
 				const count = counts.get(enzyme.name)
-				if (selected.includes(enzyme.name)) return true
 				if (filter === 'vector' && !count?.vector) return false
 				if (filter === 'both' && !(count?.vector && count.insert)) return false
-				if (supplier && !enzyme.custom && !enzyme.suppliers.includes(supplier)) return false
-				return !q || enzyme.name.toUpperCase().includes(q) || enzyme.site.includes(q)
-			})
-			.slice(0, 120)
-	}, [allEnzymes, counts, filter, query, selected, supplier])
+				return !supplier || enzyme.custom || enzyme.suppliers.includes(supplier)
+			}),
+		[allEnzymes, counts, filter, supplier]
+	)
 
 	const vectorFragments = useMemo(
 		() => (chosen.length ? digest(vector.seq, findAllCuts(vector.seq, chosen, true), true) : []),
@@ -260,6 +262,53 @@ export function VectorEditor({
 		rcut: e.cutComplement,
 		color: colors.enzyme
 	}))
+	const regions: Region[] = useMemo(
+		() =>
+			product
+				? [
+						{ kind: 'vector', start: 0, end: product.vectorLength },
+						{ kind: 'insert', start: product.vectorLength, end: product.seq.length }
+					]
+				: [{ kind: 'vector', start: 0, end: resultSeq.length }],
+		[product, resultSeq.length]
+	)
+	const sites = useMemo(
+		() => chosen.flatMap((enzyme) => findSites(resultSeq, enzyme, true)),
+		[chosen, resultSeq]
+	)
+	// A new plasmid invalidates any previous selection.
+	useEffect(() => setRange(null), [resultSeq])
+
+	const select = (next: SeqRange | null, source: RangeSource) => {
+		setRange((current) =>
+			current && next && current.start === next.start && current.end === next.end ? current : next
+		)
+		setRangeSource(source)
+	}
+	const legend = [
+		...regions.map((region) => ({
+			key: region.kind,
+			kind: region.kind,
+			label: region.kind === 'insert' ? insert.name : vector.name,
+			range: { start: region.start, end: region.end }
+		})),
+		...sites.map((site, i) => ({
+			key: `${site.enzyme}-${site.start}-${i}`,
+			kind: 'site' as const,
+			label: `${site.enzyme} · ${site.start + 1}`,
+			range: { start: site.start, end: (site.start + site.length) % resultSeq.length || resultSeq.length }
+		}))
+	]
+	const selectionLength = range
+		? range.start <= range.end
+			? range.end - range.start
+			: resultSeq.length - range.start + range.end
+		: 0
+	const selectedSeq = range
+		? range.start <= range.end
+			? resultSeq.slice(range.start, range.end)
+			: resultSeq.slice(range.start) + resultSeq.slice(0, range.end)
+		: ''
 
 	const toggle = (name: string) =>
 		setSelected((current) =>
@@ -278,9 +327,9 @@ export function VectorEditor({
 			setCustomError((error as Error).message)
 		}
 	}
-	const copy = async () => {
+	const copy = async (text = resultFasta) => {
 		try {
-			await navigator.clipboard.writeText(resultFasta)
+			await navigator.clipboard.writeText(text)
 			setCopied(true)
 			window.setTimeout(() => setCopied(false), 1500)
 		} catch {
@@ -297,7 +346,16 @@ export function VectorEditor({
 	}
 
 	return (
-		<div className='ve'>
+		<div
+			className='ve'
+			style={
+				{
+					'--ve-vector': colors.vector,
+					'--ve-insert': colors.insert,
+					'--ve-site': colors.enzyme
+				} as React.CSSProperties
+			}
+		>
 			<div className='ve-inputs'>
 				<SequenceInput
 					id='ve-vector'
@@ -344,13 +402,21 @@ export function VectorEditor({
 						: labels.none}
 				</p>
 				<div className='ve-filters'>
-					<input
-						type='search'
-						value={query}
-						placeholder={labels.search}
-						aria-label={labels.search}
-						onChange={(event) => setQuery(event.target.value)}
+					<EnzymeCombobox
+						options={options}
+						counts={counts}
+						selected={selected}
+						onToggle={toggle}
+						labels={labels}
 					/>
+					<label>
+						{labels.show}
+						<select value={filter} onChange={(event) => setFilter(event.target.value as Filter)}>
+							<option value='both'>{labels.showCutsBoth}</option>
+							<option value='vector'>{labels.showCutsVector}</option>
+							<option value='all'>{labels.showAll}</option>
+						</select>
+					</label>
 					<label>
 						{labels.supplier}
 						<select value={supplier} onChange={(event) => setSupplier(event.target.value)}>
@@ -362,37 +428,7 @@ export function VectorEditor({
 							))}
 						</select>
 					</label>
-					<label>
-						{labels.show}
-						<select value={filter} onChange={(event) => setFilter(event.target.value as Filter)}>
-							<option value='both'>{labels.showCutsBoth}</option>
-							<option value='vector'>{labels.showCutsVector}</option>
-							<option value='all'>{labels.showAll}</option>
-						</select>
-					</label>
 				</div>
-				<ul className='ve-enzyme-list'>
-					{visible.map((enzyme) => {
-						const count = counts.get(enzyme.name)
-						const on = selected.includes(enzyme.name)
-						return (
-							<li key={enzyme.name}>
-								<label className={on ? 'is-on' : undefined}>
-									<input type='checkbox' checked={on} onChange={() => toggle(enzyme.name)} />
-									<strong>{enzyme.name}</strong>
-									<code>{formatSite(enzyme)}</code>
-									<span className='ve-muted' title={labels.cutsVector}>
-										V {count?.vector ?? 0}
-									</span>
-									<span className='ve-muted' title={labels.cutsInsert}>
-										I {count?.insert ?? 0}
-									</span>
-									{enzyme.custom && <span className='ve-tag'>{labels.custom}</span>}
-								</label>
-							</li>
-						)
-					})}
-				</ul>
 				<details className='ve-custom'>
 					<summary>{labels.custom}</summary>
 					<div className='ve-custom-form'>
@@ -500,22 +536,78 @@ export function VectorEditor({
 								viewer='circular'
 								showComplement={false}
 								disableExternalFonts
+								selection={range ? { start: range.start, end: range.end, clockwise: true } : undefined}
+								onSelection={(selection) => {
+									const { start, end } = selection
+									if (start === undefined || end === undefined || start === end) return
+									select(
+										selection.clockwise === false ? { start: end, end: start } : { start, end },
+										'map'
+									)
+								}}
 								style={{ height: '100%', width: '100%' }}
 							/>
 						)}
 					</div>
 					<div className='ve-fasta'>
 						<div className='ve-input-actions'>
-							<button type='button' className='ve-button' onClick={copy} disabled={!resultFasta}>
+							<button type='button' className='ve-button' onClick={() => copy()} disabled={!resultFasta}>
 								{copied ? labels.copied : labels.copy}
 							</button>
 							<button type='button' className='ve-button' onClick={download} disabled={!resultFasta}>
 								{labels.download}
 							</button>
 						</div>
-						<textarea readOnly value={resultFasta} spellCheck={false} aria-label='FASTA' />
+						{resultSeq && (
+							<FastaView
+								header={resultFasta.split('\n')[0] ?? ''}
+								seq={resultSeq}
+								regions={regions}
+								sites={sites}
+								range={range}
+								rangeSource={rangeSource}
+								onRange={(next) => select(next, 'fasta')}
+								label='FASTA'
+							/>
+						)}
+						<p className='ve-selection' aria-live='polite'>
+							{range ? (
+								<>
+									{labels.selection(range.start + 1, range.end || resultSeq.length, selectionLength)}
+									<button
+										type='button'
+										className='ve-link'
+										onClick={() => copy(toFasta(`${resultName}_${range.start + 1}-${range.end}`, selectedSeq))}
+									>
+										{labels.copySelection}
+									</button>
+									<button type='button' className='ve-link' onClick={() => select(null, 'legend')}>
+										{labels.clearSelection}
+									</button>
+								</>
+							) : (
+								labels.selectionHint
+							)}
+						</p>
 					</div>
 				</div>
+				{resultSeq && (
+					<ul className='ve-legend' aria-label={labels.legend}>
+						{legend.map((item) => (
+							<li key={item.key}>
+								<button
+									type='button'
+									data-kind={item.kind}
+									aria-pressed={range?.start === item.range.start && range?.end === item.range.end}
+									onClick={() => select(item.range, 'legend')}
+								>
+									<span className='ve-swatch' aria-hidden='true' />
+									{item.label}
+								</button>
+							</li>
+						))}
+					</ul>
+				)}
 			</section>
 			<p className='ve-muted ve-footnote'>
 				{labels.data(rebaseVersion)} {labels.privacy}

@@ -14,6 +14,7 @@
 	--ve-map-ink: var(--ve-theme-map-ink, #2a2a2a);
 	--ve-map-muted: var(--ve-theme-map-muted, #73777d);
 	--ve-map-cut: var(--ve-theme-map-cut, #73777d);
+	--ve-map-selection: var(--ve-theme-map-selection, rgb(222 246 255 / 0.9));
 	display: grid;
 	gap: 1rem;
 	color: var(--ve-ink);
@@ -137,7 +138,7 @@
 }
 .ve-filters {
 	display: grid;
-	grid-template-columns: 2fr 1fr 1fr;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
 	gap: 0.6rem;
 	align-items: end;
 }
@@ -147,17 +148,6 @@
 	font-size: 0.78rem;
 	color: var(--ve-muted);
 }
-.ve-enzyme-list {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
-	gap: 0.3rem;
-	max-height: 18rem;
-	margin: 0.75rem 0 0;
-	padding: 0;
-	overflow: auto;
-	list-style: none;
-}
-.ve-enzyme-list label,
 .ve-fragment-list label {
 	display: flex;
 	flex-wrap: wrap;
@@ -169,23 +159,80 @@
 	border-radius: 6px;
 	cursor: pointer;
 }
-.ve-enzyme-list label:hover,
 .ve-fragment-list label:hover {
 	border-color: var(--ve-line);
 }
-.ve-enzyme-list label.is-on,
 .ve-fragment-list label.is-on {
 	border-color: var(--ve-accent);
 }
-.ve-enzyme-list code {
-	font-family: var(--ve-mono);
-	font-size: 0.78rem;
-	color: var(--ve-muted);
-}
-.ve-enzyme-list input,
 .ve-fragment-list input,
 .ve-orientation input {
 	accent-color: var(--ve-accent);
+}
+/* Enzyme search: a single input with a dropdown, instead of a long list. */
+.ve-combobox {
+	position: relative;
+}
+.ve-combobox input {
+	width: 100%;
+	min-height: 2.75rem;
+	padding: 0.55rem 0.7rem;
+	border: 1px solid var(--ve-line);
+	border-radius: 6px;
+	background: var(--ve-bg);
+	color: var(--ve-ink);
+	font: inherit;
+}
+.ve-combobox input:focus {
+	outline: 2px solid var(--ve-accent);
+	outline-offset: 1px;
+}
+.ve-listbox {
+	position: absolute;
+	z-index: 20;
+	top: calc(100% + 4px);
+	left: 0;
+	right: 0;
+	max-height: 18rem;
+	margin: 0;
+	padding: 0.3rem;
+	overflow: auto;
+	list-style: none;
+	border: 1px solid var(--ve-line);
+	border-radius: 8px;
+	background: var(--ve-bg);
+	box-shadow: 0 12px 30px -12px rgb(0 0 0 / 0.5);
+}
+.ve-listbox li {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	min-height: 2.5rem;
+	padding: 0.2rem 0.6rem;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.ve-listbox li.is-active {
+	background: var(--ve-surface);
+	outline: 1px solid var(--ve-line);
+}
+.ve-listbox li[aria-selected='true'] strong {
+	color: var(--ve-accent);
+}
+.ve-listbox code {
+	color: var(--ve-muted);
+	font-family: var(--ve-mono);
+	font-size: 0.78rem;
+}
+.ve-listbox .ve-muted {
+	margin-left: auto;
+}
+.ve-check {
+	width: 1ch;
+	color: var(--ve-accent);
+}
+.ve-empty {
+	padding: 0.6rem;
 }
 .ve-tag {
 	padding: 0 0.35rem;
@@ -270,7 +317,7 @@
 }
 .ve-result-grid {
 	display: grid;
-	grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
 	gap: 1rem;
 }
 .ve-map {
@@ -298,6 +345,13 @@
 .ve-map .la-vz-cut-site {
 	stroke: var(--ve-map-cut) !important;
 }
+.ve-map .la-vz-selection {
+	fill: var(--ve-map-selection) !important;
+}
+.ve-map .la-vz-selection-edge {
+	fill: var(--ve-accent) !important;
+	stroke: var(--ve-accent) !important;
+}
 /* Annotation labels sit on the coloured arcs and stay dark for contrast. */
 .ve-map .la-vz-annotation-label,
 .ve-map text:has(> .la-vz-annotation-label) {
@@ -310,13 +364,119 @@
 .ve-fasta .ve-input-actions {
 	margin: 0 0 0.5rem;
 }
-.ve-fasta textarea {
+/* Coloured FASTA linked to the map. */
+.ve-fasta-view {
 	flex: 1;
 	min-height: 20rem;
-	/* Keep FASTA lines intact; scroll instead of wrapping. */
+	max-height: 26rem;
+	overflow: auto;
+	padding: 0.6rem 0.7rem;
+	border: 1px solid var(--ve-line);
+	border-radius: 6px;
+	background: var(--ve-bg);
+	font-family: var(--ve-mono);
+	font-size: 0.72rem;
+	line-height: 1.6;
+	position: relative;
+}
+.ve-fasta-view:focus-visible {
+	outline: 2px solid var(--ve-accent);
+}
+.ve-fasta-header {
+	color: var(--ve-muted);
 	white-space: pre;
-	word-break: normal;
-	overflow-x: auto;
+}
+.ve-line {
+	display: flex;
+	gap: 0.8rem;
+	white-space: pre;
+}
+.ve-pos {
+	min-width: 5ch;
+	color: var(--ve-muted);
+	text-align: right;
+	user-select: none;
+}
+.ve-bases {
+	letter-spacing: 0.02em;
+}
+.ve-bases .is-vector {
+	color: var(--ve-vector);
+}
+.ve-bases .is-insert {
+	color: var(--ve-insert);
+}
+.ve-bases .is-site {
+	color: var(--ve-site);
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 3px;
+}
+.ve-bases .is-selected {
+	background: color-mix(in srgb, var(--ve-accent) 28%, transparent);
+}
+.ve-bases ::selection {
+	background: color-mix(in srgb, var(--ve-accent) 35%, transparent);
+}
+.ve-selection {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.3rem 1rem;
+	min-height: 2.75rem;
+	margin: 0.4rem 0 0;
+	color: var(--ve-muted);
+	font-size: 0.82rem;
+}
+.ve-link {
+	min-height: 2.25rem;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--ve-accent);
+	font: inherit;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.ve-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	margin: 0.9rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+.ve-legend button {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+	min-height: 2.25rem;
+	padding: 0 0.7rem;
+	border: 1px solid var(--ve-line);
+	border-radius: 999px;
+	background: var(--ve-bg);
+	color: var(--ve-ink);
+	font: inherit;
+	font-family: var(--ve-mono);
+	font-size: 0.75rem;
+	cursor: pointer;
+}
+.ve-legend button[aria-pressed='true'] {
+	border-color: var(--ve-accent);
+}
+.ve-swatch {
+	width: 0.7rem;
+	height: 0.7rem;
+	border-radius: 50%;
+}
+[data-kind='vector'] .ve-swatch {
+	background: var(--ve-vector);
+}
+[data-kind='insert'] .ve-swatch {
+	background: var(--ve-insert);
+}
+[data-kind='site'] .ve-swatch {
+	background: var(--ve-site);
 }
 .ve-footnote {
 	margin: 0;
