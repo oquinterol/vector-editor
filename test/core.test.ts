@@ -16,6 +16,9 @@ import {
 	rightEnd,
 	topStrand,
 	toFasta,
+	shiftSpans,
+	gcContent,
+	baseIndexAt,
 	toGenBank,
 	type Enzyme,
 	type Fragment
@@ -160,6 +163,19 @@ describe('FASTA', () => {
 		const parsed = parseSequence('>my_seq desc\nACGT acgu\n12 NNX\n>second\nAAAA')
 		expect(parsed).toEqual({ name: 'my_seq', seq: 'ACGTACGTNN', invalid: ['X'] })
 	})
+	it('computes GC content over unambiguous bases', () => {
+		expect(gcContent('GGCCAATT')).toBe(0.5)
+		expect(gcContent('GCNN')).toBe(1)
+		expect(Number.isNaN(gcContent('NNN'))).toBe(true)
+	})
+	it('maps text offsets to base indices, skipping headers and line breaks', () => {
+		const text = '>name desc\nACGT\nACGT'
+		expect(baseIndexAt(text, 11)).toBe(0) // start of first base line
+		expect(baseIndexAt(text, 13)).toBe(2)
+		expect(baseIndexAt(text, 16)).toBe(4) // after the line break
+		expect(baseIndexAt(text, text.length)).toBe(8)
+		expect(baseIndexAt('AC GT', 5)).toBe(4)
+	})
 	it('wraps sequences at 70 columns', () => {
 		const fasta = toFasta('p', 'A'.repeat(150), 'circular')
 		expect(fasta.split('\n')).toEqual(['>p circular', 'A'.repeat(70), 'A'.repeat(70), 'A'.repeat(10), ''])
@@ -187,5 +203,37 @@ describe('GenBank', () => {
 	it('writes ORIGIN in numbered blocks of ten and ends with //', () => {
 		expect(gb).toContain('        1 acgtacgtac gtacgtacgt acgtacgtac gtacgtacgt acgtacgtac gtacgtacgt\n       61 acgtacgtac gtacgtacgt')
 		expect(lines.at(-2)).toBe('//')
+	})
+})
+
+describe('region tracking while editing', () => {
+	const spans = [
+		{ start: 0, end: 6, kind: 'vector' },
+		{ start: 6, end: 10, kind: 'insert' }
+	]
+	const before = 'AAAAAAGGGG'
+	it('grows the region where bases are typed', () => {
+		expect(shiftSpans(spans, before, 'AAAAAAGGTTGG')).toEqual([
+			{ start: 0, end: 6, kind: 'vector' },
+			{ start: 6, end: 12, kind: 'insert' }
+		])
+	})
+	it('shrinks a region when bases are deleted and shifts the next one', () => {
+		expect(shiftSpans(spans, before, 'AAAGGGG')).toEqual([
+			{ start: 0, end: 3, kind: 'vector' },
+			{ start: 3, end: 7, kind: 'insert' }
+		])
+	})
+	it('drops a region that was deleted entirely', () => {
+		expect(shiftSpans(spans, before, 'AAAAAA')).toEqual([{ start: 0, end: 6, kind: 'vector' }])
+	})
+	it('gives text typed on a boundary to the region that starts there, without overlap', () => {
+		expect(shiftSpans(spans, before, 'AAAAAATGGGG')).toEqual([
+			{ start: 0, end: 6, kind: 'vector' },
+			{ start: 6, end: 11, kind: 'insert' }
+		])
+	})
+	it('leaves regions alone when nothing changes', () => {
+		expect(shiftSpans(spans, before, before)).toEqual(spans)
 	})
 })

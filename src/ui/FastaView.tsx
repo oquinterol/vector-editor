@@ -23,6 +23,8 @@ interface Props {
 	range: SeqRange | null
 	rangeSource: RangeSource | null
 	onRange: (range: SeqRange) => void
+	/** False while the panel is hidden (compact layout); re-scrolls when shown again. */
+	active?: boolean
 	/** Fixed bases per line; by default it fits the panel width (multiples of 10). */
 	width?: number
 	label: string
@@ -44,6 +46,7 @@ export function FastaView({
 	rangeSource,
 	onRange,
 	width: fixedWidth,
+	active = true,
 	label
 }: Props) {
 	const box = useRef<HTMLDivElement>(null)
@@ -119,13 +122,13 @@ export function FastaView({
 
 	// Follow selections made on the map or the legend.
 	useEffect(() => {
-		if (!range || rangeSource === 'fasta' || !box.current) return
+		if (!active || !range || rangeSource === 'fasta' || !box.current) return
 		const line = box.current.querySelector<HTMLElement>(
 			`[data-line="${Math.floor(range.start / width) * width}"]`
 		)
 		// The view is the offsetParent of its lines (position: relative).
 		if (line) box.current.scrollTop = line.offsetTop - 24
-	}, [range, rangeSource, width])
+	}, [range, rangeSource, width, active])
 
 	const positionOf = (node: Node | null, offset: number): number | null => {
 		const element = node instanceof Element ? node : node?.parentElement
@@ -134,15 +137,42 @@ export function FastaView({
 		return Number(run.dataset.start) + (node instanceof Text ? offset : 0)
 	}
 
-	const onMouseUp = () => {
+	const readSelection = (): SeqRange | null => {
 		const selection = window.getSelection()
-		if (!selection || selection.isCollapsed) return
+		if (!selection || selection.isCollapsed) return null
 		const a = positionOf(selection.anchorNode, selection.anchorOffset)
 		const b = positionOf(selection.focusNode, selection.focusOffset)
-		if (a === null || b === null || a === b) return
-		onRange({ start: Math.min(a, b), end: Math.max(a, b) })
-		selection.removeAllRanges()
+		if (a === null || b === null || a === b) return null
+		return { start: Math.min(a, b), end: Math.max(a, b) }
 	}
+
+	const onMouseUp = () => {
+		const next = readSelection()
+		if (!next) return
+		onRange(next)
+		window.getSelection()?.removeAllRanges()
+	}
+
+	// Touch: long-press selection has no mouseup, and its handles keep moving, so follow
+	// selection changes (debounced) and leave the native selection in place.
+	const latest = useRef(onRange)
+	latest.current = onRange
+	useEffect(() => {
+		if (!window.matchMedia('(pointer: coarse)').matches) return
+		let timer = 0
+		const onChange = () => {
+			window.clearTimeout(timer)
+			timer = window.setTimeout(() => {
+				const next = readSelection()
+				if (next) latest.current(next)
+			}, 250)
+		}
+		document.addEventListener('selectionchange', onChange)
+		return () => {
+			window.clearTimeout(timer)
+			document.removeEventListener('selectionchange', onChange)
+		}
+	}, [])
 
 	return (
 		<div className='ve-fasta-view' ref={box} onMouseUp={onMouseUp} aria-label={label} tabIndex={0}>

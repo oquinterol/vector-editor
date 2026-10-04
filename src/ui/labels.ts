@@ -53,6 +53,18 @@ export interface Labels {
 	sequences: string
 	searchShortcut: string
 	construction: string
+	manualEdit: string
+	manualMode: string
+	manualModeHint: string
+	editSequence: string
+	editingCopy: string
+	backToCloning: string
+	format: string
+	reverseComplement: string
+	view: string
+	sequenceView: string
+	views: string
+	tabs: { map: string; sequence: string; build: string }
 	legend: string
 	selection: (from: number, to: number, length: number) => string
 	selectionHint: string
@@ -127,6 +139,19 @@ export const labelsEs: Labels = {
 	sequences: 'Secuencias',
 	searchShortcut: 'buscar',
 	construction: 'Construcción',
+	manualEdit: 'edición manual',
+	manualMode: 'Edición manual',
+	manualModeHint:
+		'Estás editando una secuencia a mano: el mapa y los sitios de corte siguen lo que escribes. La clonación no se modifica.',
+	editSequence: 'Editar la secuencia (FASTA o secuencia sola)',
+	editingCopy: 'Editando una copia.',
+	backToCloning: 'Volver a la clonación',
+	format: 'Formatear',
+	reverseComplement: 'Reverso complementario',
+	view: 'Ver',
+	sequenceView: 'Modo de la secuencia',
+	views: 'Vistas',
+	tabs: { map: 'Mapa', sequence: 'Secuencia', build: 'Construir' },
 	legend: 'Regiones y sitios',
 	selection: (from, to, length) => `Selección ${from}–${to} · ${length} pb`,
 	selectionHint:
@@ -204,6 +229,19 @@ export const labelsEn: Labels = {
 	sequences: 'Sequences',
 	searchShortcut: 'search',
 	construction: 'Construction',
+	manualEdit: 'manual edit',
+	manualMode: 'Manual editing',
+	manualModeHint:
+		'You are editing a sequence by hand: the map and cut sites follow what you type. The cloning is left untouched.',
+	editSequence: 'Edit the sequence (FASTA or plain sequence)',
+	editingCopy: 'Editing a copy.',
+	backToCloning: 'Back to cloning',
+	format: 'Format',
+	reverseComplement: 'Reverse complement',
+	view: 'View',
+	sequenceView: 'Sequence mode',
+	views: 'Views',
+	tabs: { map: 'Map', sequence: 'Sequence', build: 'Build' },
 	legend: 'Regions and sites',
 	selection: (from, to, length) => `Selection ${from}–${to} · ${length} bp`,
 	selectionHint: 'Select bases in the FASTA, or click the map or the legend, to see where each region lies.',

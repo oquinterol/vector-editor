@@ -17,6 +17,8 @@ Simulador de clonación en el navegador: elige enzimas de restricción comercial
 - **Digestión y ligación** con extremos reales (5', 3' o romos): comprueba la compatibilidad de ambas uniones, prueba las dos orientaciones del inserto y avisa si el vector puede religarse o si las enzimas cortan dentro del inserto. Funciona con enzimas tipo IIS (Golden Gate).
 - **Archivos**: FASTA, GenBank y SnapGene (`.dna`), leídos localmente con [seqparse](https://github.com/Lattice-Automation/seqparse).
 - **Mapa y FASTA vinculados**: el FASTA se colorea igual que el mapa circular ([SeqViz](https://github.com/Lattice-Automation/seqviz)) — vector, inserto y sitios de corte —; seleccionar bases en el FASTA marca el arco en el mapa, hacer clic en el mapa o en la leyenda resalta y lleva a esa secuencia. Copia o descarga el FASTA completo o solo la selección.
+- **Edición manual coloreada**: pega o escribe una secuencia (FASTA o sola) y el mapa, los sitios de corte, la longitud y el %GC se actualizan en vivo; vector, inserto y sitios conservan su color y se desplazan con cada edición. Formatear y reverso complementario.
+- **Móvil y pantallas verticales**: pestañas Mapa · Secuencia · Construir; en horizontal, riel lateral para dar toda la altura al mapa.
 - **Búsqueda de enzimas** en un desplegable con teclado (↑ ↓ Enter Esc), filtrable por proveedor y por si cortan vector e inserto.
 - **Exporta GenBank anotado** (vector, inserto con su orientación y sitios de restricción), listo para SnapGene, Benchling, ApE o Biopython, además de FASTA.
 - **Atajos**: `/` buscar enzima · `C` copiar (la selección si hay una) · `D` FASTA · `G` GenBank · `Esc` quitar selección.
@@ -30,6 +32,8 @@ Simulador de clonación en el navegador: elige enzimas de restricción comercial
 - **Digestion and ligation** with real ends (5', 3' or blunt): checks both junctions, tries both insert orientations, and warns when the vector can self-ligate or the enzymes cut inside the insert. Works with type IIS enzymes (Golden Gate).
 - **Files**: FASTA, GenBank and SnapGene (`.dna`), parsed locally with [seqparse](https://github.com/Lattice-Automation/seqparse).
 - **Linked map and FASTA**: the FASTA is coloured like the circular map ([SeqViz](https://github.com/Lattice-Automation/seqviz)) — vector, insert and cut sites —; selecting bases in the FASTA marks the arc on the map, and clicking the map or the legend highlights and scrolls to that sequence. Copy or download the whole FASTA or just the selection.
+- **Coloured manual editing**: paste or type a sequence (FASTA or plain) and the map, cut sites, length and GC% update live; vector, insert and sites keep their colours and move with every edit. Format and reverse complement.
+- **Phones and portrait screens**: Map · Sequence · Build tabs; in landscape, a side rail gives the map the full height.
 - **Enzyme search** in a keyboard-friendly dropdown (↑ ↓ Enter Esc), filterable by supplier and by whether enzymes cut vector and insert.
 - **Annotated GenBank export** (vector, insert with its orientation and restriction sites), ready for SnapGene, Benchling, ApE or Biopython, plus FASTA.
 - **Shortcuts**: `/` search enzyme · `C` copy (the selection if any) · `D` FASTA · `G` GenBank · `Esc` clear selection.

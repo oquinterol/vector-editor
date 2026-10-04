@@ -25,6 +25,33 @@ body {
 	color: var(--bp-sterile);
 	font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+	background: transparent;
+}
+::-webkit-scrollbar-button {
+	display: none;
+}
+::-webkit-scrollbar-thumb {
+	border: 2px solid transparent;
+	border-radius: 999px;
+	background: var(--bp-tissue);
+	background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: var(--bp-boundary);
+	background-clip: padding-box;
+}
+@supports not selector(::-webkit-scrollbar) {
+	html {
+		scrollbar-width: thin;
+		scrollbar-color: var(--bp-tissue) transparent;
+	}
+}
 ::selection {
 	background: var(--bp-bio);
 	color: var(--bp-ink);
@@ -33,6 +60,10 @@ body {
 	display: grid;
 	grid-template-rows: minmax(0, 1fr) auto;
 	height: 100%;
+	/* Dynamic viewport height: the mobile browser bar never hides the tab bar. */
+	height: 100dvh;
+	padding-left: env(safe-area-inset-left);
+	padding-right: env(safe-area-inset-right);
 }
 .ve {
 	--ve-theme-bg: var(--bp-ink);
@@ -51,6 +82,8 @@ body {
 	--ve-theme-map-muted: var(--bp-boundary);
 	--ve-theme-map-cut: var(--bp-pink);
 	--ve-theme-map-selection: rgb(164 230 109 / 0.16);
+	--ve-theme-scroll-thumb: var(--bp-tissue);
+	--ve-theme-scroll-thumb-hover: var(--bp-boundary);
 }
 /* The map as a specimen under the microscope: reticle grid, vignette, glowing arcs. */
 .ve-map {
@@ -128,13 +161,37 @@ body {
 .app-footer a:hover {
 	color: var(--bp-bio);
 }
-@media (max-width: 1100px) {
-	/* On smaller screens the page scrolls instead of fitting the viewport. */
-	.app-shell {
-		height: auto;
-		min-height: 100%;
+@media (max-width: 640px) {
+	.app-tagline {
+		display: none;
 	}
-	.ve--app {
-		height: auto;
+	.app-brand {
+		flex: 1;
+		border-right: 0;
+	}
+	.app-lang {
+		margin-left: auto;
+	}
+	.app-footer {
+		gap: 0.2rem 0.5rem;
+		padding: 0.35rem 0.75rem calc(0.35rem + env(safe-area-inset-bottom));
+		font-size: 0.68rem;
+	}
+}
+@media (max-height: 520px) and (orientation: landscape) {
+	/* Every pixel of height goes to the map; the credit stays on the full layout. */
+	.app-footer {
+		display: none;
+	}
+	.app-shell {
+		grid-template-rows: minmax(0, 1fr);
+	}
+	.app-tagline,
+	.app-brand strong {
+		display: none;
+	}
+	.app-brand {
+		border-right: 0;
+		padding-right: 0;
 	}
 }
