@@ -13,7 +13,7 @@ import {
 	type Fragment
 } from '../core'
 import { EnzymeCombobox } from './EnzymeCombobox'
-import { FastaView } from './FastaView'
+import { FastaView, type SeqRange } from './FastaView'
 import { SequenceEditor } from './SequenceEditor'
 import { labelsEn, type Labels } from './labels'
 import { fastaOf, useCloning, type Filter } from './useCloning'
@@ -63,6 +63,13 @@ function saveFile(name: string, text: string, extension: string, type: string) {
 }
 
 type Tab = 'map' | 'sequence' | 'build'
+
+type LegendItem = {
+	key: string
+	kind: 'vector' | 'insert' | 'site'
+	name: string
+	ranges: SeqRange[]
+}
 
 const isTyping = (target: EventTarget | null) =>
 	target instanceof HTMLElement &&
@@ -294,20 +301,128 @@ export function VectorEditor({
 					: 1,
 			color: region.kind === 'insert' ? colors.insert : colors.vector
 		}))
-	const legend = [
+	// Legend: one chip per region and one per enzyme (its sites grouped, cycled on tap).
+	const seqLength = c.resultSeq.length
+	const siteRange = (start: number, length: number): SeqRange => ({
+		start,
+		end: (start + length) % seqLength || seqLength
+	})
+	const siteGroups = new Map<string, SeqRange[]>()
+	for (const site of c.sites) {
+		const ranges = siteGroups.get(site.enzyme) ?? []
+		ranges.push(siteRange(site.start, site.length))
+		siteGroups.set(site.enzyme, ranges)
+	}
+	const legend: LegendItem[] = [
 		...c.regions.map((region) => ({
 			key: region.kind,
 			kind: region.kind,
-			label: region.kind === 'insert' ? c.insert.name : c.vector.name,
-			range: { start: region.start, end: region.end }
+			name: region.kind === 'insert' ? c.insert.name : c.vector.name,
+			ranges: [{ start: region.start, end: region.end }]
 		})),
-		...c.sites.map((site, i) => ({
-			key: `${site.enzyme}-${site.start}-${i}`,
+		...[...siteGroups].map(([enzyme, ranges]) => ({
+			key: `site-${enzyme}`,
 			kind: 'site' as const,
-			label: `${site.enzyme} ${site.start + 1}`,
-			range: { start: site.start, end: (site.start + site.length) % c.resultSeq.length || c.resultSeq.length }
+			name: enzyme,
+			ranges: ranges.sort((x, y) => x.start - y.start)
 		}))
 	]
+	const sameRange = (x: SeqRange, y: SeqRange | null) => !!y && x.start === y.start && x.end === y.end
+	const active = (() => {
+		for (const item of legend) {
+			const index = item.ranges.findIndex((r) => sameRange(r, c.range))
+			if (index >= 0) return { item, index }
+		}
+		return null
+	})()
+	const chipLabel = (item: LegendItem) =>
+		item.kind === 'site' && item.ranges.length > 1
+			? `${item.name} ×${item.ranges.length}`
+			: item.kind === 'site'
+				? `${item.name} ${item.ranges[0]!.start + 1}`
+				: item.name
+	const onChip = (item: LegendItem) => {
+		const current = active?.item.key === item.key ? active.index : -1
+		c.select(item.ranges[(current + 1) % item.ranges.length]!, 'legend')
+	}
+	// What a tap on the map points at, so the matching chip lights up.
+	const resolveMapSelection = (selection: { type?: string; name?: string; start: number; end: number }) => {
+		const distance = (a: number, b: number) => {
+			const d = Math.abs(a - b)
+			return Math.min(d, seqLength - d)
+		}
+		if (selection.type === 'ENZYME' && selection.name) {
+			const ranges = siteGroups.get(selection.name)
+			if (ranges?.length) {
+				return [...ranges].sort((x, y) => distance(x.start, selection.start) - distance(y.start, selection.start))[0]!
+			}
+		}
+		if (selection.type === 'ANNOTATION') {
+			const region = legend.find((item) => item.kind !== 'site' && item.name === selection.name)
+			if (region) return region.ranges[0]!
+		}
+		return { start: selection.start, end: selection.end }
+	}
+	const rangeLength = (r: SeqRange) => (r.start <= r.end ? r.end - r.start : seqLength - r.start + r.end)
+	const pill = !c.range
+		? null
+		: active?.item.kind === 'site'
+			? `${active.item.name} · ${(c.range.start + 1).toLocaleString()}${
+					active.item.ranges.length > 1 ? ` · ${active.index + 1}/${active.item.ranges.length}` : ''
+				}`
+			: `${active ? `${active.item.name} · ` : ''}${(c.range.start + 1).toLocaleString()}–${(
+					c.range.end || seqLength
+				).toLocaleString()} · ${rangeLength(c.range).toLocaleString()} ${labels.bp}`
+
+	// Phones: a tap anywhere near the ring picks the closest cut site (within ~8°) or the
+	// region under it. SeqViz's own marks are a few pixels wide, too small for a finger.
+	const tapStart = useRef<{ x: number; y: number } | null>(null)
+	const pickFromTap = (x: number, y: number) => {
+		const ring = [...(root.current?.querySelectorAll<SVGPathElement>('.ve-map .la-vz-index-line') ?? [])]
+		if (!ring.length || !seqLength) return
+		const boxes = ring.map((path) => path.getBoundingClientRect())
+		const left = Math.min(...boxes.map((b) => b.left))
+		const right = Math.max(...boxes.map((b) => b.right))
+		const top = Math.min(...boxes.map((b) => b.top))
+		const bottom = Math.max(...boxes.map((b) => b.bottom))
+		const radius = (right - left) / 2
+		const dx = x - (left + right) / 2
+		const dy = y - (top + bottom) / 2
+		const distance = Math.hypot(dx, dy)
+		if (distance < radius * 0.45 || distance > radius * 1.4) return
+		// 0 at 12 o'clock, growing clockwise, as SeqViz draws it.
+		const angle = (Math.atan2(dx, -dy) + 2 * Math.PI) % (2 * Math.PI)
+		const index = Math.floor((angle / (2 * Math.PI)) * seqLength)
+		const gap = (a: number, b: number) => {
+			const d = Math.abs(a - b)
+			return Math.min(d, seqLength - d)
+		}
+		const tolerance = seqLength * (8 / 360)
+		let best: SeqRange | null = null
+		let bestGap = Infinity
+		for (const ranges of siteGroups.values()) {
+			for (const r of ranges) {
+				const g = gap(r.start, index)
+				if (g < bestGap) {
+					best = r
+					bestGap = g
+				}
+			}
+		}
+		if (best && bestGap <= tolerance) return c.select(best, 'map')
+		const region = c.regions.find((r) => index >= r.start && index < r.end)
+		if (region) c.select({ start: region.start, end: region.end }, 'map')
+	}
+
+	// Keep the active chip in view in the swipeable row (phones).
+	const chipRefs = useRef(new Map<string, HTMLButtonElement>())
+	useEffect(() => {
+		if (!compact || !active) return
+		const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+		chipRefs.current
+			.get(active.item.key)
+			?.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: reduce ? 'auto' : 'smooth' })
+	}, [compact, active?.item.key, active?.index])
 
 	return (
 		<div
@@ -566,7 +681,26 @@ export function VectorEditor({
 
 				<section className='ve-workspace' aria-label={labels.result}>
 					<div className='ve-stage'>
-						<div className='ve-map' id='ve-panel-map' aria-label={labels.map}>
+						<div
+							className='ve-map'
+							id='ve-panel-map'
+							aria-label={labels.map}
+							onPointerDown={(event) => {
+								tapStart.current = { x: event.clientX, y: event.clientY }
+							}}
+							onPointerUp={(event) => {
+								const start = tapStart.current
+								tapStart.current = null
+								// A tap, not a drag or pinch.
+								if (!compact || !start || Math.hypot(event.clientX - start.x, event.clientY - start.y) > 10) return
+								pickFromTap(event.clientX, event.clientY)
+							}}
+						>
+							{pill && (
+								<p className='ve-map-pill' aria-live='polite'>
+									{pill}
+								</p>
+							)}
 							{c.resultSeq && (
 								<SeqViz
 									name={c.resultName}
@@ -583,11 +717,15 @@ export function VectorEditor({
 									viewer='circular'
 									showComplement={false}
 									disableExternalFonts
+									rotateOnScroll={!compact}
 									selection={c.range ? { start: c.range.start, end: c.range.end, clockwise: true } : undefined}
 									onSelection={(selection) => {
+										// Phones use the tap handler on the map container instead.
+										if (compact) return
 										const { start, end } = selection
 										if (start === undefined || end === undefined || start === end) return
-										c.select(selection.clockwise === false ? { start: end, end: start } : { start, end }, 'map')
+										const raw = selection.clockwise === false ? { start: end, end: start } : { start, end }
+										c.select(resolveMapSelection({ type: selection.type, name: selection.name, ...raw }), 'map')
 									}}
 									style={{ height: '100%', width: '100%' }}
 								/>
@@ -661,11 +799,16 @@ export function VectorEditor({
 									<button
 										type='button'
 										data-kind={item.kind}
-										aria-pressed={c.range?.start === item.range.start && c.range?.end === item.range.end}
-										onClick={() => c.select(item.range, 'legend')}
+										ref={(element) => {
+											if (element) chipRefs.current.set(item.key, element)
+											else chipRefs.current.delete(item.key)
+										}}
+										aria-pressed={active?.item.key === item.key}
+										title={item.kind === 'site' ? item.ranges.map((r) => r.start + 1).join(', ') : undefined}
+										onClick={() => onChip(item)}
 									>
 										<span className='ve-swatch' aria-hidden='true' />
-										{item.label}
+										{chipLabel(item)}
 									</button>
 								</li>
 							))}
