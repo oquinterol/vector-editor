@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "Si usas este software, por favor cítalo así. / If you use this software, please cite it as below."
 title: "Vector editor: in-browser cloning simulator with REBASE enzymes"
 type: software
-version: 0.4.1
+version: 0.4.2
 authors:
   - family-names: "Quintero López"
     given-names: "Oscar Alexis"

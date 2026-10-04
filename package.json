@@ -1,6 +1,6 @@
 {
 	"name": "@oquinterol/vector-editor",
-	"version": "0.4.1",
+	"version": "0.4.2",
 	"description": "In-browser cloning simulator: choose commercial or custom restriction enzymes, digest and ligate, and get a live FASTA and plasmid map.",
 	"license": "MIT",
 	"author": "Oscar Alexis Quintero López (https://oquinterol.com)",

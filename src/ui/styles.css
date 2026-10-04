@@ -976,6 +976,10 @@
 	padding-right: 0.75rem;
 	white-space: nowrap;
 }
+.ve[data-tab='map'] .ve-selection > span {
+	/* On the map the pill already names the selection; keep only its actions here. */
+	display: none;
+}
 .ve[data-compact] .ve-selection > span {
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -985,6 +989,36 @@
 }
 .ve[data-compact] .ve-selection:not(:has(button)) {
 	display: none;
+}
+
+/* Phones: the map only draws; names live in the chips and the pill, so no "+1" clusters. */
+.ve[data-compact] .ve-map .la-vz-circular-label,
+.ve[data-compact] .ve-map .la-vz-label-line {
+	display: none;
+}
+.ve-map-pill {
+	display: none;
+}
+.ve[data-compact] .ve-map-pill {
+	position: absolute;
+	top: 0.75rem;
+	left: 50%;
+	z-index: 2;
+	display: block;
+	max-width: calc(100% - 1.5rem);
+	margin: 0;
+	padding: 0.3rem 0.75rem;
+	overflow: hidden;
+	border: 1px solid var(--ve-accent);
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--ve-bg) 88%, transparent);
+	color: var(--ve-ink);
+	font-family: var(--ve-mono);
+	font-size: 0.78rem;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	transform: translateX(-50%);
+	pointer-events: none;
 }
 
 /* Editing vector or insert on a phone: a full-screen sheet with a large field. */
