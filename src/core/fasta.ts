@@ -38,3 +38,37 @@ export function toFasta(name: string, seq: string, description = '', width = 70)
 	const lines = seq.match(new RegExp(`.{1,${width}}`, 'g')) ?? []
 	return [header, ...lines].join('\n') + '\n'
 }
+
+/** Fraction of G and C among unambiguous bases (0–1); NaN when there are none. */
+export function gcContent(seq: string): number {
+	let gc = 0
+	let acgt = 0
+	for (const base of seq) {
+		if (base === 'G' || base === 'C') gc++
+		if (base === 'A' || base === 'C' || base === 'G' || base === 'T') acgt++
+	}
+	return acgt ? gc / acgt : Number.NaN
+}
+
+/**
+ * Maps a character offset in FASTA (or raw) text to a 0-based base index,
+ * skipping header lines, whitespace, digits and invalid characters.
+ */
+export function baseIndexAt(text: string, offset: number): number {
+	let index = 0
+	let inHeader = false
+	let lineStart = true
+	const valid = new RegExp(`[${IUPAC_LETTERS}]`, 'i')
+	for (let i = 0; i < Math.min(offset, text.length); i++) {
+		const char = text[i]!
+		if (lineStart && char === '>') inHeader = true
+		if (char === '\n') {
+			inHeader = false
+			lineStart = true
+			continue
+		}
+		lineStart = false
+		if (!inHeader && valid.test(char)) index++
+	}
+	return index
+}

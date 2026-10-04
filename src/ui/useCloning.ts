@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useDeferredValue, useEffect, useMemo, useState } from 'react'
 import {
 	canSelfLigate,
 	commercialEnzymes,
@@ -9,6 +9,8 @@ import {
 	fragmentLength,
 	ligate,
 	parseSequence,
+	reverseComplement,
+	shiftSpans,
 	toFasta,
 	toGenBank,
 	type Enzyme,
@@ -21,6 +23,8 @@ import type { RangeSource, Region, SeqRange } from './FastaView'
 import type { Labels } from './labels'
 
 export type Filter = 'both' | 'vector' | 'all'
+/** `clone` builds a plasmid from vector + insert; `sequence` edits any sequence by hand. */
+export type Mode = 'clone' | 'sequence'
 
 const DISCARD_WARNING_BP = 30
 
@@ -58,6 +62,19 @@ export function useCloning(labels: Labels, storageKey: string | null) {
 	const [orientation, setOrientation] = useState(0)
 	const [range, setRange] = useState<SeqRange | null>(null)
 	const [rangeSource, setRangeSource] = useState<RangeSource | null>(null)
+	const [mode, setMode] = useState<Mode>('clone')
+	const [sequenceText, setSequenceTextRaw] = useState('')
+	// Vector/insert regions carried into manual editing and moved along with each edit.
+	const [editRegions, setEditRegions] = useState<Region[]>([])
+	const [insertDirection, setInsertDirection] = useState<1 | -1>(1)
+	const setSequenceText = (text: string) => {
+		const before = parseSequence(sequenceText, 'sequence').seq
+		const after = parseSequence(text, 'sequence').seq
+		if (before !== after) setEditRegions((current) => shiftSpans(current, before, after))
+		setSequenceTextRaw(text)
+	}
+	// Typing stays responsive: the map and sites follow a deferred copy of the text.
+	const deferredSequenceText = useDeferredValue(sequenceText)
 
 	useEffect(() => setCustom(loadCustom(storageKey)), [storageKey])
 	const saveCustom = (next: Enzyme[]) => {
@@ -72,6 +89,8 @@ export function useCloning(labels: Labels, storageKey: string | null) {
 
 	const vector = useMemo(() => parseSequence(vectorText, 'vector'), [vectorText])
 	const insert = useMemo(() => parseSequence(insertText, 'insert'), [insertText])
+	const sequence = useMemo(() => parseSequence(deferredSequenceText, 'sequence'), [deferredSequenceText])
+	const editing = mode === 'sequence'
 	const allEnzymes = useMemo(() => [...custom, ...commercialEnzymes], [custom])
 	const byName = useMemo(() => new Map(allEnzymes.map((e) => [e.name, e])), [allEnzymes])
 	const chosen = useMemo(
@@ -83,22 +102,22 @@ export function useCloning(labels: Labels, storageKey: string | null) {
 		const map = new Map<string, { vector: number; insert: number }>()
 		for (const enzyme of allEnzymes) {
 			map.set(enzyme.name, {
-				vector: findCuts(vector.seq, enzyme, true).length,
-				insert: findCuts(insert.seq, enzyme, false).length
+				vector: findCuts(editing ? sequence.seq : vector.seq, enzyme, true).length,
+				insert: editing ? 0 : findCuts(insert.seq, enzyme, false).length
 			})
 		}
 		return map
-	}, [allEnzymes, vector.seq, insert.seq])
+	}, [allEnzymes, vector.seq, insert.seq, sequence.seq, editing])
 
 	const options = useMemo(
 		() =>
 			allEnzymes.filter((enzyme) => {
 				const count = counts.get(enzyme.name)
 				if (filter === 'vector' && !count?.vector) return false
-				if (filter === 'both' && !(count?.vector && count.insert)) return false
+				if (filter === 'both' && !(count?.vector && (editing || count.insert))) return false
 				return !supplier || enzyme.custom || enzyme.suppliers.includes(supplier)
 			}),
-		[allEnzymes, counts, filter, supplier]
+		[allEnzymes, counts, filter, supplier, editing]
 	)
 
 	const vectorFragments = useMemo(
@@ -125,25 +144,27 @@ export function useCloning(labels: Labels, storageKey: string | null) {
 	const backbone = vectorFragments[vectorIndex]
 	const piece = insertFragments[insertIndex]
 	const products = useMemo(() => (backbone && piece ? ligate(backbone, piece) : []), [backbone, piece])
-	const product = products[Math.min(orientation, products.length - 1)]
+	const product = editing ? undefined : products[Math.min(orientation, products.length - 1)]
 
 	const warnings: string[] = []
-	const invalid = [...new Set([...vector.invalid, ...insert.invalid])]
+	const invalid = [...new Set(editing ? sequence.invalid : [...vector.invalid, ...insert.invalid])]
 	if (invalid.length) warnings.push(labels.warnings.invalid(invalid.join(' ')))
-	if (chosen.length && vector.seq && !vectorFragments.length) warnings.push(labels.warnings.noVectorCuts)
-	for (const enzyme of chosen) {
-		const n = counts.get(enzyme.name)?.vector ?? 0
-		if (n > 1) warnings.push(labels.warnings.vectorMultiCut(enzyme.name, n))
+	if (!editing) {
+		if (chosen.length && vector.seq && !vectorFragments.length) warnings.push(labels.warnings.noVectorCuts)
+		for (const enzyme of chosen) {
+			const n = counts.get(enzyme.name)?.vector ?? 0
+			if (n > 1) warnings.push(labels.warnings.vectorMultiCut(enzyme.name, n))
+		}
+		if (chosen.length && insert.seq && autoInsert < 0) warnings.push(labels.warnings.noInsertFragment)
+		// Flanking sites only trim a few bases; losing more means the enzymes cut inside the insert.
+		const discarded = piece ? insert.seq.length - fragmentLength(piece) : 0
+		if (discarded > DISCARD_WARNING_BP) warnings.push(labels.warnings.insertCutsInside(discarded))
+		if (backbone && piece && !products.length) warnings.push(labels.warnings.incompatible)
+		if (backbone && canSelfLigate(backbone)) warnings.push(labels.warnings.selfLigation)
 	}
-	if (chosen.length && insert.seq && autoInsert < 0) warnings.push(labels.warnings.noInsertFragment)
-	// Flanking sites only trim a few bases; losing more means the enzymes cut inside the insert.
-	const discarded = piece ? insert.seq.length - fragmentLength(piece) : 0
-	if (discarded > DISCARD_WARNING_BP) warnings.push(labels.warnings.insertCutsInside(discarded))
-	if (backbone && piece && !products.length) warnings.push(labels.warnings.incompatible)
-	if (backbone && canSelfLigate(backbone)) warnings.push(labels.warnings.selfLigation)
 
-	const resultName = product ? `${vector.name}-${insert.name}` : vector.name
-	const resultSeq = product?.seq ?? vector.seq
+	const resultName = editing ? sequence.name : product ? `${vector.name}-${insert.name}` : vector.name
+	const resultSeq = editing ? sequence.seq : (product?.seq ?? vector.seq)
 	const resultFasta = resultSeq ? toFasta(resultName, resultSeq, `circular ${resultSeq.length} ${labels.bp}`) : ''
 
 	const regions: Region[] = useMemo(
@@ -153,8 +174,10 @@ export function useCloning(labels: Labels, storageKey: string | null) {
 						{ kind: 'vector', start: 0, end: product.vectorLength },
 						{ kind: 'insert', start: product.vectorLength, end: product.seq.length }
 					]
-				: [{ kind: 'vector', start: 0, end: resultSeq.length }],
-		[product, resultSeq.length]
+				: editing
+					? editRegions.filter((region) => region.end <= resultSeq.length)
+					: [{ kind: 'vector', start: 0, end: resultSeq.length }],
+		[product, resultSeq.length, editing, editRegions]
 	)
 	const sites: Site[] = useMemo(
 		() => chosen.flatMap((enzyme) => findSites(resultSeq, enzyme, true)),
@@ -182,26 +205,16 @@ export function useCloning(labels: Labels, storageKey: string | null) {
 
 	const genbank = () => {
 		const features: Feature[] = [
-			...(product
-				? [
-						{
-							type: 'misc_feature',
-							start: 0,
-							end: product.vectorLength,
-							strand: 1 as const,
-							label: vector.name,
-							note: 'vector backbone'
-						},
-						{
-							type: 'misc_feature',
-							start: product.vectorLength,
-							end: product.seq.length,
-							strand: product.orientation === 'forward' ? (1 as const) : (-1 as const),
-							label: insert.name,
-							note: `insert, ${product.orientation} orientation`
-						}
-					]
-				: []),
+			...regions
+				.filter((region) => product || editing)
+				.map((region) => ({
+					type: 'misc_feature',
+					start: region.start,
+					end: region.end,
+					strand: region.kind === 'insert' ? (editing ? insertDirection : product?.orientation === 'reverse' ? -1 : 1) : (1 as 1 | -1),
+					label: region.kind === 'insert' ? insert.name : vector.name,
+					note: region.kind === 'insert' ? 'insert' : 'vector backbone'
+				})),
 			...sites.map((site) => ({
 				type: 'misc_feature',
 				start: site.start,
@@ -214,8 +227,27 @@ export function useCloning(labels: Labels, storageKey: string | null) {
 		return toGenBank(resultName, resultSeq, features, {
 			definition: product
 				? `${insert.name} cloned into ${vector.name} (${chosen.map((e) => e.name).join(', ')}).`
-				: `${vector.name}.`
+				: `${resultName}.`
 		})
+	}
+
+	/** Edit a copy of what is on screen; the cloning inputs stay untouched. */
+	const editResult = () => {
+		setEditRegions(resultSeq ? regions : [])
+		setInsertDirection(product?.orientation === 'reverse' ? -1 : 1)
+		setSequenceTextRaw(resultSeq ? toFasta(resultName, resultSeq) : '>sequence\n')
+		setMode('sequence')
+	}
+	const backToCloning = () => setMode('clone')
+	/** Reverse-complements the edited sequence, mirroring its regions and insert direction. */
+	const reverseEdit = (columns: number) => {
+		const parsed = parseSequence(sequenceText, 'sequence')
+		const length = parsed.seq.length
+		setEditRegions((current) =>
+			current.map((region) => ({ ...region, start: length - region.end, end: length - region.start }))
+		)
+		setInsertDirection((direction) => (direction === 1 ? -1 : 1))
+		setSequenceTextRaw(toFasta(parsed.name, reverseComplement(parsed.seq), '', columns))
 	}
 
 	const loadExample = () => {
@@ -271,6 +303,15 @@ export function useCloning(labels: Labels, storageKey: string | null) {
 		selectionLength,
 		selectedSeq,
 		genbank,
-		loadExample
+		loadExample,
+		mode,
+		editing,
+		sequenceText,
+		setSequenceText,
+		sequence,
+		insertDirection,
+		reverseEdit,
+		editResult,
+		backToCloning
 	}
 }

@@ -14,6 +14,7 @@ import {
 } from '../core'
 import { EnzymeCombobox } from './EnzymeCombobox'
 import { FastaView } from './FastaView'
+import { SequenceEditor } from './SequenceEditor'
 import { labelsEn, type Labels } from './labels'
 import { fastaOf, useCloning, type Filter } from './useCloning'
 
@@ -60,6 +61,8 @@ function saveFile(name: string, text: string, extension: string, type: string) {
 	link.click()
 	URL.revokeObjectURL(url)
 }
+
+type Tab = 'map' | 'sequence' | 'build'
 
 const isTyping = (target: EventTarget | null) =>
 	target instanceof HTMLElement &&
@@ -179,6 +182,34 @@ export function VectorEditor({
 }: VectorEditorProps) {
 	const c = useCloning(labels, storageKey)
 	const root = useRef<HTMLDivElement>(null)
+	// Narrow or portrait: one panel at a time, switched from a bottom tab bar.
+	const [compact, setCompact] = useState(false)
+	// Phone in landscape: little height, so the tabs move to a side rail.
+	const [short, setShort] = useState(false)
+	const [tab, setTab] = useState<Tab>('map')
+	const [fastaMode, setFastaMode] = useState<'view' | 'edit'>('view')
+
+	// Measured on the editor itself, so it works inside a page as well as full screen.
+	useEffect(() => {
+		const element = root.current
+		if (!element || typeof ResizeObserver === 'undefined') return
+		const portrait = window.matchMedia('(orientation: portrait)')
+		const update = () => {
+			const width = element.getBoundingClientRect().width
+			setCompact(width < 900 || (portrait.matches && width < 1200) || window.innerHeight < 520)
+			setShort(window.innerHeight < 520 && window.innerWidth > window.innerHeight)
+		}
+		update()
+		const observer = new ResizeObserver(update)
+		observer.observe(element)
+		portrait.addEventListener('change', update)
+		window.addEventListener('resize', update)
+		return () => {
+			observer.disconnect()
+			portrait.removeEventListener('change', update)
+			window.removeEventListener('resize', update)
+		}
+	}, [])
 	const [copied, setCopied] = useState<'all' | 'selection' | null>(null)
 	const [customName, setCustomName] = useState('')
 	const [customSite, setCustomSite] = useState('')
@@ -208,7 +239,9 @@ export function VectorEditor({
 			const key = event.key.toLowerCase()
 			if (key === '/') {
 				event.preventDefault()
-				root.current?.querySelector<HTMLInputElement>('.ve-combobox input')?.focus()
+				setTab('build')
+				// Wait for the build panel to be shown before focusing its search box.
+				window.setTimeout(() => root.current?.querySelector<HTMLInputElement>('.ve-combobox input')?.focus())
 			} else if (key === 'c' && c.resultSeq) {
 				void copy(c.range ? 'selection' : 'all')
 			} else if (key === 'd' && c.resultSeq) {
@@ -237,18 +270,23 @@ export function VectorEditor({
 		}
 	}
 
-	const annotations = c.product
-		? [
-				{ name: c.vector.name, start: 0, end: c.product.vectorLength, direction: 1, color: colors.vector },
-				{
-					name: c.insert.name,
-					start: c.product.vectorLength,
-					end: c.product.seq.length,
-					direction: c.product.orientation === 'forward' ? 1 : -1,
-					color: colors.insert
-				}
-			]
-		: []
+	// Arcs follow the regions, so they survive (and move with) manual editing.
+	const annotations = c.regions
+		.filter(() => c.product || c.editing)
+		.map((region) => ({
+			name: region.kind === 'insert' ? c.insert.name : c.vector.name,
+			start: region.start,
+			end: region.end,
+			direction:
+				region.kind === 'insert'
+					? c.editing
+						? c.insertDirection
+						: c.product?.orientation === 'forward'
+							? 1
+							: -1
+					: 1,
+			color: region.kind === 'insert' ? colors.insert : colors.vector
+		}))
 	const legend = [
 		...c.regions.map((region) => ({
 			key: region.kind,
@@ -269,6 +307,9 @@ export function VectorEditor({
 			ref={root}
 			tabIndex={-1}
 			className={`ve ve--${layout}`}
+			data-compact={compact || undefined}
+			data-tab={compact ? tab : undefined}
+			data-short={(compact && short) || undefined}
 			style={
 				{ '--ve-vector': colors.vector, '--ve-insert': colors.insert, '--ve-site': colors.enzyme } as React.CSSProperties
 			}
@@ -285,11 +326,19 @@ export function VectorEditor({
 						<span className='ve-muted'>
 							{c.resultSeq.length.toLocaleString()} {labels.bp} · {labels.circular}
 							{c.product && ` · ${c.product.orientation === 'forward' ? labels.forward : labels.reverse}`}
-							{!c.product && ` · ${labels.vectorOnly}`}
+							{!c.product && ` · ${c.editing ? labels.manualEdit : labels.vectorOnly}`}
 						</span>
 					)}
 					{c.warnings.length > 0 && (
-						<a className='ve-warn-badge' href='#ve-warnings'>
+						<a
+							className='ve-warn-badge'
+							href='#ve-warnings'
+							onClick={(event) => {
+								if (!compact) return
+								event.preventDefault()
+								setTab('build')
+							}}
+						>
 							{labels.warningsCount(c.warnings.length)}
 						</a>
 					)}
@@ -309,7 +358,24 @@ export function VectorEditor({
 
 			<div className='ve-body'>
 
-				<aside className='ve-sidebar' aria-label={labels.construction}>
+				<aside className='ve-sidebar' id='ve-panel-build' aria-label={labels.construction}>
+					{c.editing && (
+						<section className='ve-section ve-mode'>
+							<h3>{labels.manualMode}</h3>
+							<p className='ve-muted'>{labels.manualModeHint}</p>
+							<button
+								type='button'
+								className='ve-button'
+								onClick={() => {
+									c.backToCloning()
+									setFastaMode('view')
+								}}
+							>
+								{labels.backToCloning}
+							</button>
+						</section>
+					)}
+					{!c.editing && (
 					<section className='ve-section'>
 						<div className='ve-section-head'>
 							<h3>{labels.sequences}</h3>
@@ -338,6 +404,7 @@ export function VectorEditor({
 							labels={labels}
 						/>
 					</section>
+					)}
 
 					<section className='ve-section' aria-labelledby='ve-enzymes'>
 						<div className='ve-section-head'>
@@ -435,6 +502,7 @@ export function VectorEditor({
 						</details>
 					</section>
 
+					{!c.editing && (
 					<section className='ve-section' aria-labelledby='ve-fragments'>
 						<h3 id='ve-fragments'>
 							{labels.fragments} <span className='ve-muted'>({labels.bp})</span>
@@ -472,6 +540,7 @@ export function VectorEditor({
 							</fieldset>
 						)}
 					</section>
+					)}
 
 					{c.warnings.length > 0 && (
 						<section className='ve-section' id='ve-warnings' aria-live='polite'>
@@ -490,7 +559,7 @@ export function VectorEditor({
 
 				<section className='ve-workspace' aria-label={labels.result}>
 					<div className='ve-stage'>
-						<div className='ve-map' aria-label={labels.map}>
+						<div className='ve-map' id='ve-panel-map' aria-label={labels.map}>
 							{c.resultSeq && (
 								<SeqViz
 									name={c.resultName}
@@ -517,18 +586,64 @@ export function VectorEditor({
 								/>
 							)}
 						</div>
-						<div className='ve-fasta'>
-							{c.resultSeq && (
-								<FastaView
-									header={c.resultFasta.split('\n')[0] ?? ''}
-									seq={c.resultSeq}
+						<div className='ve-fasta' id='ve-panel-sequence'>
+							<div className='ve-fasta-head'>
+								<div className='ve-segmented' role='group' aria-label={labels.sequenceView}>
+									<button type='button' aria-pressed={fastaMode === 'view'} onClick={() => setFastaMode('view')}>
+										{labels.view}
+									</button>
+									<button
+										type='button'
+										aria-pressed={fastaMode === 'edit'}
+										onClick={() => {
+											if (!c.editing) c.editResult()
+											setFastaMode('edit')
+										}}
+									>
+										{labels.edit}
+									</button>
+								</div>
+								{c.editing && (
+									<span className='ve-muted ve-editing-note'>
+										{labels.editingCopy}{' '}
+										<button
+											type='button'
+											className='ve-link'
+											onClick={() => {
+												c.backToCloning()
+												setFastaMode('view')
+											}}
+										>
+											{labels.backToCloning}
+										</button>
+									</span>
+								)}
+							</div>
+							{c.editing && fastaMode === 'edit' ? (
+								<SequenceEditor
+									value={c.sequenceText}
+									onChange={c.setSequenceText}
+									onSelectRange={(next) => c.select(next, 'fasta')}
+									onReverse={c.reverseEdit}
 									regions={c.regions}
 									sites={c.sites}
 									range={c.range}
-									rangeSource={c.rangeSource}
-									onRange={(next) => c.select(next, 'fasta')}
-									label='FASTA'
+									labels={labels}
 								/>
+							) : (
+								c.resultSeq && (
+									<FastaView
+										header={c.resultFasta.split('\n')[0] ?? ''}
+										seq={c.resultSeq}
+										regions={c.regions}
+										sites={c.sites}
+										range={c.range}
+										rangeSource={c.rangeSource}
+										onRange={(next) => c.select(next, 'fasta')}
+										active={!compact || tab === 'sequence'}
+										label='FASTA'
+									/>
+								)
 							)}
 						</div>
 					</div>
@@ -568,6 +683,28 @@ export function VectorEditor({
 					</div>
 				</section>
 			</div>
+
+			{compact && (
+				<nav className='ve-tabs' aria-label={labels.views}>
+					{(['map', 'sequence', 'build'] as const).map((id) => (
+						<button
+							key={id}
+							type='button'
+							aria-pressed={tab === id}
+							aria-controls={`ve-panel-${id}`}
+							onClick={() => setTab(id)}
+						>
+							<span className='ve-tab-icon' aria-hidden='true'>
+								{id === 'map' ? '◯' : id === 'sequence' ? '≡' : '⚙'}
+							</span>
+							{labels.tabs[id]}
+							{id === 'build' && c.warnings.length > 0 && (
+								<span className='ve-tab-badge'>{c.warnings.length}</span>
+							)}
+						</button>
+					))}
+				</nav>
+			)}
 		</div>
 	)
 }
