@@ -948,9 +948,83 @@
 .ve--embedded[data-compact] .ve-sidebar {
 	overflow: auto;
 }
+/* Status bar on phones: one swipeable row of chips, never a tiny scrolling box. */
 .ve[data-compact] .ve-statusbar {
-	max-height: 7.5rem;
-	overflow: auto;
+	gap: 0.3rem;
+	padding: 0.5rem 0 0.5rem 0.75rem;
+}
+.ve[data-compact] .ve-legend {
+	flex-wrap: nowrap;
+	padding-right: 0.75rem;
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scroll-snap-type: x proximity;
+	scrollbar-width: none;
+	/* Fade at the edge hints that the row continues. */
+	mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+}
+.ve[data-compact] .ve-legend::-webkit-scrollbar {
+	display: none;
+}
+.ve[data-compact] .ve-legend li {
+	flex: none;
+	scroll-snap-align: start;
+}
+.ve[data-compact] .ve-selection {
+	flex-wrap: nowrap;
+	gap: 0 0.9rem;
+	padding-right: 0.75rem;
+	white-space: nowrap;
+}
+.ve[data-compact] .ve-selection > span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.ve[data-compact] .ve-selection > .ve-muted {
+	display: none;
+}
+.ve[data-compact] .ve-selection:not(:has(button)) {
+	display: none;
+}
+
+/* Editing vector or insert on a phone: a full-screen sheet with a large field. */
+.ve-sheet-done {
+	display: none;
+}
+.ve[data-compact] .ve-card[data-sheet] {
+	position: fixed;
+	inset: 0;
+	z-index: 50;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	padding: calc(0.75rem + env(safe-area-inset-top)) calc(0.75rem + env(safe-area-inset-right))
+		calc(0.75rem + env(safe-area-inset-bottom)) calc(0.75rem + env(safe-area-inset-left));
+	border: 0;
+	border-radius: 0;
+	background: var(--ve-bg);
+}
+.ve[data-compact] .ve-card[data-sheet] .ve-card-head {
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+}
+.ve[data-compact] .ve-card[data-sheet] .ve-card-head .ve-muted {
+	grid-column: 1 / -1;
+}
+.ve[data-compact] .ve-card[data-sheet] .ve-sheet-done {
+	display: inline-flex;
+}
+.ve[data-compact] .ve-card[data-sheet] textarea {
+	flex: 1;
+	min-height: 0;
+	resize: none;
+}
+.ve[data-compact] .ve-card[data-sheet] .ve-card-actions > button[aria-expanded] {
+	display: none;
+}
+/* The enzyme dropdown must fit above the on-screen keyboard. */
+.ve[data-compact] .ve-listbox {
+	max-height: min(20rem, 40svh);
 }
 
 /* Short landscape (phone on its side): tabs become a left rail, chrome shrinks to one line. */

@@ -87,6 +87,8 @@ function SequenceCard(props: {
 		<div
 			className='ve-card'
 			data-dragging={dragging}
+			// On phones an explicit edit opens as a full-screen sheet (see styles).
+			data-sheet={editing || undefined}
 			onDragOver={(event) => {
 				event.preventDefault()
 				setDragging(true)
@@ -104,6 +106,11 @@ function SequenceCard(props: {
 				<span className='ve-card-name' title={name}>
 					{length ? name : labels.empty}
 				</span>
+				{editing && (
+					<button type='button' className='ve-button ve-primary ve-sheet-done' onClick={() => setEditing(false)}>
+						{labels.done}
+					</button>
+				)}
 				<span className='ve-muted'>
 					{length.toLocaleString()} {labels.bp} · {circular ? labels.circular : labels.linear}
 				</span>
@@ -670,10 +677,15 @@ export function VectorEditor({
 										{labels.selection(c.range.start + 1, c.range.end || c.resultSeq.length, c.selectionLength)}
 									</span>
 									<button type='button' className='ve-link' onClick={() => copy('selection')}>
-										{copied === 'selection' ? labels.copied : labels.copySelection}
+										{copied === 'selection' ? labels.copied : compact ? labels.copy : labels.copySelection}
 									</button>
-									<button type='button' className='ve-link' onClick={() => c.select(null, 'legend')}>
-										{labels.clearSelection} <kbd>Esc</kbd>
+									<button
+										type='button'
+										className='ve-link'
+										aria-label={labels.clearSelection}
+										onClick={() => c.select(null, 'legend')}
+									>
+										{compact ? '✕' : labels.clearSelection} {!compact && <kbd>Esc</kbd>}
 									</button>
 								</>
 							) : (
